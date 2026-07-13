@@ -8,7 +8,7 @@ import { PlainButton } from '../components/PlainButton';
 import { Newsletter } from '../components/Newsletter';
 import { BlogCard } from '../components/BlogCard';
 import { 
-  getFeaturedPost, 
+  blogPosts,
   getAllCategories, 
   getFilteredPosts 
 } from '../data/blogData';
@@ -17,7 +17,11 @@ export function BlogsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   
-  const featuredPost = getFeaturedPost();
+  // Get the latest blog (most recent date)
+  const latestPost = [...blogPosts].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  })[0];
+
   const categories = getAllCategories();
   const filteredPosts = getFilteredPosts(searchTerm, selectedCategory);
 
@@ -30,12 +34,21 @@ export function BlogsPage() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
             <div className="lg:w-1/2">
               <div className="relative rounded-[20px] overflow-hidden bg-[#eef3f0]">
-                <img
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  className="h-full w-full object-cover"
-                  style={{ maxHeight: '400px', minHeight: '300px' }}
-                />
+                {latestPost.image ? (
+                  <img
+                    src={latestPost.image}
+                    alt={latestPost.title}
+                    className="h-full w-full object-cover"
+                    style={{ maxHeight: '400px', minHeight: '300px' }}
+                  />
+                ) : (
+                  <div 
+                    className="flex items-center justify-center bg-[#eef3f0]"
+                    style={{ maxHeight: '400px', minHeight: '300px' }}
+                  >
+                    <span className="text-[#4e7b64] font-medium">No image</span>
+                  </div>
+                )}
                 <div className="absolute top-4 left-4 bg-[#4e7b64] text-white text-xs font-bold px-3 py-1 rounded-full">
                   Latest
                 </div>
@@ -44,29 +57,29 @@ export function BlogsPage() {
             <div className="lg:w-1/2">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-xs font-medium text-[#4e7b64] uppercase tracking-[0.08em]">
-                  {featuredPost.category}
+                  {latestPost.category}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-[#d0dcd4]"></span>
-                <span className="text-xs text-[#718078]">{featuredPost.date}</span>
+                <span className="text-xs text-[#718078]">{latestPost.date}</span>
               </div>
               <h1 className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-4xl lg:text-5xl">
-                {featuredPost.title}
+                {latestPost.title}
               </h1>
               <p className="mt-4 text-base leading-relaxed text-[#4d6259] sm:text-lg">
-                {featuredPost.excerpt}
+                {latestPost.excerpt}
               </p>
               <div className="mt-6 flex items-center gap-5">
                 <div className="flex items-center gap-2 text-sm text-[#718078]">
                   <UserIcon size={16} />
-                  <span>{featuredPost.author}</span>
+                  <span>{latestPost.author}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-[#718078]">
                   <ClockIcon size={16} />
-                  <span>{featuredPost.readTime}</span>
+                  <span>{latestPost.readTime}</span>
                 </div>
               </div>
               <div className="mt-6">
-                <PlainButton href={`/blog/${featuredPost.slug}`}>
+                <PlainButton href={`/blog/${latestPost.slug}`}>
                   Read Full Article
                 </PlainButton>
               </div>
@@ -88,6 +101,32 @@ export function BlogsPage() {
             <span className="text-sm text-[#718078]">
               {filteredPosts.length} articles
             </span>
+          </div>
+
+          {/* Search and Filter */}
+          <div className="flex flex-col gap-4 mb-8 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                    selectedCategory === category
+                      ? 'bg-[#17362f] text-white'
+                      : 'bg-white text-[#4d6259] hover:bg-[#eef3f0]'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+            <input
+              type="text"
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 py-2 text-sm border border-[#d0dcd4] rounded-full bg-white text-[#17362f] placeholder-[#a0b0a8] focus:outline-none focus:ring-2 focus:ring-[#4e7b64] sm:w-64"
+            />
           </div>
 
           {filteredPosts.length === 0 ? (

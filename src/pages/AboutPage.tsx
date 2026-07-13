@@ -5,6 +5,7 @@ import { Testimonials } from '../components/Testimonials';
 import { Newsletter } from '../components/Newsletter';
 import { ProcessSteps } from '../components/ProcessSteps';
 import { Rationale } from '../components/Rationale';
+import { Reframe } from '../components/Reframe';
 
 const differentiators = [
   {
@@ -118,7 +119,7 @@ export function AboutPage() {
                   href="/contact" 
                   icon={<ArrowRightIcon size={16} />}
                 >
-                  Book a Discovery Call
+                  Start Your Decision Diagnosis
                 </RippleButton>
               </div>
             </div>
@@ -139,6 +140,7 @@ export function AboutPage() {
           </div>
         </section>
 
+        <Reframe />
         {/* What Makes Me Different Section - Matching Process Steps Style */}
         <div className="rounded-[24px] overflow-hidden">
           <section className="rounded-[24px] overflow-hidden px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
@@ -193,7 +195,7 @@ export function AboutPage() {
                   href="/contact" 
                   icon={<ArrowRightIcon size={16} />}
                 >
-                  Start Your Transformation
+                  Start Your Decision Diagnosis
                 </RippleButton>
               </div>
             </div>

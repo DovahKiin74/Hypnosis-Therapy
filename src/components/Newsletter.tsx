@@ -39,7 +39,7 @@ export function Newsletter() {
           id="newsletter-heading"
           className="font-display mt-5 text-3xl font-semibold tracking-[-0.045em] text-[#17362f] sm:text-4xl lg:text-5xl"
         >
-          Stop Overthinking. Start Leading.
+          Let’s Find Your Constraint.
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#496156] sm:text-base">
           One short email per week. No fluff. Just actionable insights to help

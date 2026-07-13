@@ -9,6 +9,15 @@ import {
   ArrowRightIcon
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { WhitePlainButton } from './WhitePlainButton';
+
+const navigationItems = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'How It Works', to: '/how-it-works' },
+  { label: 'Blogs', to: '/blogs' },
+  { label: 'FAQs', to: '/faqs' }
+];
 
 export function Footer() {
   return (
@@ -62,37 +71,19 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Quick Links */}
+        {/* Quick Links - Same as Navbar */}
         <div>
           <h3 className="text-xs font-bold uppercase tracking-[0.12em] text-white/40 mb-3">
             Quick Links
           </h3>
           <ul className="space-y-2 text-sm">
-            <li>
-              <Link to="/" className="text-white/60 hover:text-white transition-colors">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="text-white/60 hover:text-white transition-colors">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="text-white/60 hover:text-white transition-colors">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link to="/blogs" className="text-white/60 hover:text-white transition-colors">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link to="/faqs" className="text-white/60 hover:text-white transition-colors">
-                FAQs
-              </Link>
-            </li>
+            {navigationItems.map((item) => (
+              <li key={item.to}>
+                <Link to={item.to} className="text-white/60 hover:text-white transition-colors">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -126,16 +117,12 @@ export function Footer() {
           <h3 className="text-xs font-bold uppercase tracking-[0.12em] text-white/40 mb-3">
             Free Consultation
           </h3>
-          <p className="text-sm text-white/60">
+          <p className="text-sm text-white/60 mb-4">
             Book a free 15-minute Discovery Call to see if we're a good fit.
           </p>
-          <Link
-            to="/contact"
-            className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[#c2dfca] hover:text-white transition-colors"
-          >
+          <WhitePlainButton href="#diagnosis">
             Book Your Free Call
-            <ArrowRightIcon size={14} />
-          </Link>
+          </WhitePlainButton>
         </div>
       </div>
 
@@ -143,9 +130,6 @@ export function Footer() {
       <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row">
         <p>
           © {new Date().getFullYear()} Mark Siegel. All rights reserved.
-        </p>
-        <p>
-          Website by <span className="text-white/60">Your Studio</span>
         </p>
       </div>
     </footer>

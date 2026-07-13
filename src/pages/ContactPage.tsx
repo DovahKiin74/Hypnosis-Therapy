@@ -116,7 +116,7 @@ export function ContactPage() {
               Let's Talk
             </p>
             <h1 className="font-display mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-              Start Your Transformation
+              Start Your Decision Diagnosis
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-base leading-relaxed text-white/80 sm:text-lg">
               Book a call that fits your needs — whether it's a quick connect, a deep discovery,

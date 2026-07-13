@@ -13,8 +13,8 @@ const navigationItems = [
     to: '/about'
   },
   {
-    label: 'Contact',
-    to: '/contact'
+    label: 'How It Works',
+    to: '/how-it-works'
   },
   {
     label: 'Blogs',
@@ -34,7 +34,7 @@ export function Navbar() {
   }
   
   return (
-    <header className="w-full bg-[#f6f7f5] pt-[16px] max-w-[1600px] mx-auto">
+    <header className="sticky top-0 z-50 w-full pt-[16px] max-w-[1600px] mx-auto">
       <div className="mx-auto flex items-center justify-between rounded-[20px] bg-white px-5 py-4 shadow-[0_8px_28px_rgba(23,54,47,0.08)] sm:px-7">
         <Link
           to="/"
@@ -102,7 +102,7 @@ export function Navbar() {
           <Link
             to="/contact"
             onClick={closeMenu}
-            className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#17362f] px-4 py-3 text-sm font-bold text-white hover:bg-[#1258c3]"
+            className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#17362f] px-4 py-3 text-sm font-bold text-white hover:bg-[#1f4a3f]"
           >
             <CalendarDaysIcon size={16} />
             Book a Discovery Call
