@@ -33,7 +33,7 @@ const steps = [
 export function HowItWorksPage() {
   return (
     <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
-      <div className="mx-auto flex max-w-[1600px] flex-col gap-5 sm:gap-7">
+      <div className="mx-auto flex   flex-col gap-5 sm:gap-7">
 
         <Reframe />
         <ProcessSteps />

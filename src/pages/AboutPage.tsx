@@ -43,7 +43,7 @@ const differentiators = [
 export function AboutPage() {
   return (
     <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
-      <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
+      <div className="mx-auto flex flex-col gap-5 sm:gap-7  ">
         
         {/* Hero Section - Image Right, Content Left */}
         <section className="overflow-hidden rounded-[24px] bg-[#ECEFEB] px-[32px] py-8">

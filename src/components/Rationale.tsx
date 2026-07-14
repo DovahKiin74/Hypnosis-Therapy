@@ -1,79 +1,51 @@
-import { ArrowRightIcon, XIcon } from 'lucide-react';
-import { RippleButton } from './RippleButton';
-
-const problems = [
-  'Business is good, but you\'ve hit a ceiling you can\'t break through',
-  'You know exactly what to do, but you don\'t do it consistently',
-  'You\'ve built real success, but it doesn\'t feel aligned anymore'
-];
+import { StarIcon } from 'lucide-react';
+import { ProofBar } from './ProofBar';
 
 export function Rationale() {
   return (
-    <section
-      className="relative overflow-hidden rounded-[24px] lg:min-h-[570px] px-[16px] py-[16px]"
-      aria-labelledby="problem-heading"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85"
-        alt="Business owner facing a ceiling"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      
-      <div className="absolute inset-0 bg-[#14352c]/55" />
-      
-      <div className="relative max-w-2xl rounded-[20px] bg-[#fbfcf9]/95 p-7 shadow-xl backdrop-blur-sm sm:p-10 lg:p-12">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
-          The Real Problem
-        </p>
-        
-        <h2
-          id="problem-heading"
-          className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-4xl lg:text-5xl"
-        >
-          You're Not Broken.
-          <br />
-          <span className="text-[#397366]">Your Decision Patterns Are.</span>
-        </h2>
-        
-        <p className="mt-5 text-sm leading-relaxed text-[#4d6259] sm:text-base">
-          Sound familiar? You've done the work. You've built the business. 
-          But something's off. And it's not your strategy.
-        </p>
-
-        {/* Problem List */}
-        <div className="mt-6 space-y-3">
-          {problems.map((problem) => (
-            <div key={problem} className="flex items-start gap-3">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#e8d4d4]">
-                <XIcon size={13} strokeWidth={3} className="text-[#a64444]" />
-              </span>
-              <p className="text-sm font-medium text-[#26483d] sm:text-base">
-                {problem}
-              </p>
+    <div className="rounded-[24px] overflow-hidden bg-[#17362f]">
+      <section
+        className="relative px-6 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-[48px] lg:py-24"
+        aria-labelledby="problem-heading"
+      >
+        <div className="relative z-10 mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+          
+          {/* LEFT: Heading + Description */}
+          <div className="flex-1 max-w-4xl">
+            <h2
+              id="problem-heading"
+              className="font-display text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl"
+            >
+              You've built success, but something feels off — it's not strategy, it's your decision patterns holding you back.
+            </h2>
+            
+            <p className="mt-8 text-base leading-relaxed text-white/80">
+              You've put in the work, built the business, and achieved real results. But despite the success, something still doesn't feel right. You're second-guessing yourself more than you should. You know what to do, but you don't always follow through. And the alignment you expected to feel by now just isn't there. The truth is, your strategy isn't the problem — the way you're making decisions is. And until that changes, nothing else will.
+            </p>
+          </div>
+          {/* RIGHT: 5 Golden Stars */}
+          <div className="flex-shrink-0 flex flex-col items-center lg:items-end">
+            <div className="flex gap-1">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon 
+                  key={i} 
+                  size={32} 
+                  className={`${i < 4 ? 'fill-yellow-400 text-yellow-400' : 'fill-yellow-400/30 text-yellow-400/30'}`}
+                />
+              ))}
             </div>
-          ))}
+            <p className="mt-2 text-sm font-medium text-white/80">
+              Rated 4.7 • 200+ Reviews
+            </p>
+            <p className="text-xs text-white/50">
+              Trusted by business owners like you
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Conclusion - The reframe */}
-        <div className="mt-6 rounded-[12px] bg-[#17362f]/5 p-4 border-2 border-[#397366]">
-          <p className="text-sm font-semibold text-[#17362f] sm:text-base">
-            Conclusion: These are <span className="text-[#397366]">decision pattern problems</span>, 
-            not strategy problems.
-          </p>
-          <p className="mt-1 text-sm text-[#5a6b62]">
-            Your strategy is fine. Your decision system is broken.
-          </p>
-        </div>
-
-        <div className="mt-8">
-          <RippleButton 
-            href="#diagnosis"
-            icon={<ArrowRightIcon size={16} />}
-          >
-            Start Your Decision Diagnosis
-          </RippleButton>
-        </div>
-      </div>
-    </section>
+      {/* Full ProofBar */}
+      <ProofBar embedded />
+    </div>
   );
 }

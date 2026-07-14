@@ -4,7 +4,7 @@ import { RippleButton } from './RippleButton';
 export function Consequence() {
   return (
     <section className="rounded-[24px] overflow-hidden bg-[#f6f7f5] px-5 py-16 sm:px-10 lg:px-[50px]">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-7xl">
         {/* Section Label */}
         <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-[#4e7b64]">
           The Cost of Inaction
@@ -15,9 +15,10 @@ export function Consequence() {
           What's at stake?
         </h2>
 
-        {/* Two Column Grid */}
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          {/* Without Column */}
+        {/* Three Column Grid */}
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          
+          {/* Column 1: Without */}
           <div className="rounded-[16px] bg-white p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f5e6e6]">
@@ -69,7 +70,29 @@ export function Consequence() {
             </ul>
           </div>
 
-          {/* With Column */}
+          {/* Column 2: Center - Description + CTA with justify-between */}
+          <div className="rounded-[16px] p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <p className="text-sm leading-relaxed text-black/80 sm:text-base">
+                The gap between where you are and where you could be 
+                isn't about working harder. It's about making better decisions.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-black/60 sm:text-base">
+                Choose clarity. Choose momentum. Choose the path forward.
+              </p>
+            </div>
+            
+            <div className="mt-6">
+              <RippleButton 
+                href="#diagnosis" 
+                icon={<ArrowRightIcon size={16} />}
+              >
+                Start Your Decision Diagnosis
+              </RippleButton>
+            </div>
+          </div>
+
+          {/* Column 3: With */}
           <div className="rounded-[16px] bg-[#17362f] p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#cbe0d0]">
@@ -120,19 +143,6 @@ export function Consequence() {
               </li>
             </ul>
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-10 text-center">
-          <RippleButton 
-            href="#diagnosis" 
-            icon={<ArrowRightIcon size={16} />}
-          >
-            Start Your Decision Diagnosis
-          </RippleButton>
-          <p className="mt-3 text-xs text-[#5a6b62]">
-            Takes 15–20 minutes. No pressure, just clarity.
-          </p>
         </div>
       </div>
     </section>

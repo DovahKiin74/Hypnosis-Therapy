@@ -27,7 +27,7 @@ export function BlogsPage() {
 
   return (
     <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
-      <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
+      <div className="mx-auto flex flex-col gap-5 sm:gap-7  ">
 
         {/* Hero Section - Latest Blog */}
         <section className="overflow-hidden rounded-[24px] bg-white px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">

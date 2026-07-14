@@ -5,19 +5,19 @@ type ProofBarProps = {
 const proofPoints = [
   {
     value: '399+',
-    label: 'Clients supported'
+    label: 'Business owners who have transformed their decision-making'
   },
   {
     value: '29+',
-    label: 'Years in practice'
+    label: 'Years of experience in mindset and behavioral change'
   },
   {
     value: '87%',
-    label: 'Report measurable change'
+    label: 'Of clients report measurable improvement in decision clarity'
   },
   {
     value: '1:1',
-    label: 'Private, focused support'
+    label: 'Private, personalized support tailored to your specific challenges'
   }
 ];
 
@@ -34,7 +34,7 @@ export function ProofBar({ embedded = false }: ProofBarProps) {
           <div
             key={item.label}
             className={`
-              px-4 py-4 text-center sm:px-7
+              px-4 py-4 text-left sm:px-7
               ${index < 2 ? 'border-b border-white/15' : ''}
               ${index % 2 === 0 ? 'border-r border-white/15' : ''}
               ${index >= 2 ? 'border-t border-white/15 lg:border-t-0' : ''}
@@ -43,7 +43,7 @@ export function ProofBar({ embedded = false }: ProofBarProps) {
               lg:last:border-r-0
             `}
           >
-            <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#d6e8da] sm:text-4xl">
+            <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#d6e8da] sm:text-8xl">
               {item.value}
             </p>
             <p className="mt-1 text-xs text-white/70 sm:text-sm">

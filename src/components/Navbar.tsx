@@ -34,8 +34,8 @@ export function Navbar() {
   }
   
   return (
-    <header className="sticky top-0 z-50 w-full pt-[16px] max-w-[1600px] mx-auto">
-      <div className="mx-auto flex items-center justify-between rounded-[20px] bg-white px-5 py-4 shadow-[0_8px_28px_rgba(23,54,47,0.08)] sm:px-7">
+    <header className="sticky top-0 z-50 w-full pt-[16px] px-[16px] mx-auto">
+      <div className="mx-auto flex items-center justify-between rounded-[20px] bg-[#eee] px-5 py-4 sm:px-7">
         <Link
           to="/"
           className="font-display text-lg font-bold tracking-tight text-[#17362f]"
@@ -67,7 +67,7 @@ export function Navbar() {
             icon={<ArrowRight size={16} />}
             className="px-5 py-2.5 text-sm"
           >
-            Book a Call
+            Start Your Decision Diagnosis
           </RippleButton>
         </div>
 

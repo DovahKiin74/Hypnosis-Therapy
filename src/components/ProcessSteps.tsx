@@ -34,7 +34,7 @@ export function ProcessSteps() {
     <div className="rounded-[24px] overflow-hidden">
       <section
         id="process"
-        className="rounded-[24px] overflow-hidden px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20"
+        className="rounded-[24px] overflow-hidden px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 bg-[#eee]"
         aria-labelledby="process-heading"
       >
         <div className="mx-auto max-w-4xl text-center">
@@ -63,10 +63,10 @@ export function ProcessSteps() {
           {steps.map((step, index) => (
             <div
               key={step.title}
-              className="relative rounded-[20px] bg-[#397366] overflow-hidden flex flex-col border border-[#397366]"
+              className="relative rounded-[20px] bg-[#17362F] overflow-hidden flex flex-col border border-[#17362F]"
             >
               {/* Content */}
-              <div className="relative z-10 flex flex-col items-center px-6 py-12 flex-1 rounded-[16px] bg-[#F6F7F5] overflow-hidden">
+              <div className="relative z-10 flex flex-col items-center px-6 py-12 flex-1 rounded-[16px] bg-[#eee] overflow-hidden">
                 {/* Giant Number */}
                 <span 
                   className="absolute -right-2 -top-2 font-display text-[148px] font-bold leading-none text-[#000]/10 select-none pointer-events-none"
