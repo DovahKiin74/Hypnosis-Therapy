@@ -120,7 +120,7 @@ export function Footer() {
           <p className="text-sm text-white/60 mb-4">
             Book a free 15-minute Discovery Call to see if we're a good fit.
           </p>
-          <WhitePlainButton href="#diagnosis">
+          <WhitePlainButton href="/contact">
             Book Your Free Call
           </WhitePlainButton>
         </div>

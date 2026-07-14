@@ -52,7 +52,7 @@ export function ProcessSteps() {
             designed to fix how you make decisions—permanently.
           </p>
           <div className="mx-auto mt-9 max-w-2xl text-center">
-            <PlainButton href="#diagnosis">
+            <PlainButton href="/contact">
               Start Your Decision Diagnosis
             </PlainButton>
           </div>

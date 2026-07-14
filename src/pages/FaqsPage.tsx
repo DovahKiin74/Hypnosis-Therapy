@@ -183,7 +183,7 @@ export function FaqsPage() {
 
   return (
     <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
-      <div className="mx-auto flex flex-col gap-5 sm:gap-7  ">
+      <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
         
         {/* Hero Section - Smexy */}
         <section className="overflow-hidden rounded-[24px] bg-[#17362f] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 relative">
@@ -293,7 +293,7 @@ export function FaqsPage() {
             )}
 
             {/* Still Have Questions CTA */}
-            <div className="mt-10 text-center">
+            {/* <div className="mt-10 text-center">
               <p className="text-sm text-[#718078]">
                 Still have questions? I'm here to help.
               </p>
@@ -305,7 +305,7 @@ export function FaqsPage() {
                   Ask Your Question
                 </RippleButton>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
 

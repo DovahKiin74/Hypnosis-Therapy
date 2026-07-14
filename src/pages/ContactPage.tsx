@@ -101,7 +101,7 @@ export function ContactPage() {
 
   return (
     <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
-      <div className="mx-auto flex   flex-col gap-5 sm:gap-7">
+      <div className="mx-auto flex   flex-col gap-5 sm:gap-7 max-w-[1600px]">
 
         {/* Hero Section */}
         <section className="overflow-hidden rounded-[24px] bg-[#17362f] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 text-center relative">

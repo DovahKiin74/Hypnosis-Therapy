@@ -27,10 +27,10 @@ export function BlogsPage() {
 
   return (
     <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
-      <div className="mx-auto flex flex-col gap-5 sm:gap-7  ">
+      <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
 
         {/* Hero Section - Latest Blog */}
-        <section className="overflow-hidden rounded-[24px] bg-white px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
+        <section className="overflow-hidden rounded-[24px] bg-[#eee] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
             <div className="lg:w-1/2">
               <div className="relative rounded-[20px] overflow-hidden bg-[#eef3f0]">
@@ -134,7 +134,7 @@ export function BlogsPage() {
               <p className="text-[#718078]">No articles found matching your search.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
               {filteredPosts.map((post) => (
                 <BlogCard key={post.id} post={post} />
               ))}

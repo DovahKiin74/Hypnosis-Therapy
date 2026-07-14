@@ -14,6 +14,7 @@ import {
   BlogPost,
   blogPosts
 } from '../data/blogData';
+import { BlogCard } from '../components/BlogCard';
 import { PlainButton } from '../components/PlainButton';
 
 // Helper to extract headings from content
@@ -113,10 +114,6 @@ export function BlogDetailPage() {
     }
   };
 
-  const handleRelatedClick = (relatedSlug: string) => {
-    navigate(`/blog/${relatedSlug}`);
-  };
-
   if (loading) {
     return (
       <main className="w-full bg-[#f6f7f5] px-4 py-4 text-[#17362f] sm:px-6 sm:py-6 lg:px-[50px] lg:py-[50px]">
@@ -148,7 +145,7 @@ export function BlogDetailPage() {
 
   return (
     <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
-      <div className="mx-auto flex flex-col gap-5 sm:gap-7  ">
+      <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
         {/* THUMBNAIL IMAGE */}
         {post.image && (
           <div className="overflow-hidden rounded-[24px]">
@@ -174,8 +171,8 @@ export function BlogDetailPage() {
 
           {/* LEFT - Table of Contents (Visible on sm and above, hidden below sm) */}
           {headings.length > 0 && (
-            <aside className="hidden sm:block w-48 md:w-64 shrink-0">
-              <div className="sticky top-24">
+            <aside className="hidden lg:block w-48 md:w-64 shrink-0">
+              <div className="sticky top-32">
                 <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#4e7b64] mb-4">
                   On this page
                 </p>
@@ -226,7 +223,7 @@ export function BlogDetailPage() {
 
           {/* CENTER - Blog Content */}
           <article className="flex-1 overflow-hidden rounded-[24px] bg-white px-[32px] py-[32px]">
-            <div className="mx-auto ">
+            <div className="mx-auto max-w-3xl">
               {/* Category and Date */}
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-medium text-[#4e7b64] uppercase tracking-[0.08em]">
@@ -298,7 +295,7 @@ export function BlogDetailPage() {
 
           {/* RIGHT - Sidebar (Hidden on sm, visible on lg) */}
           <aside className="hidden xl:block w-64 shrink-0">
-            <div className="sticky top-24 space-y-6">
+            <div className="sticky top-32 space-y-6">
               {/* Follow on LinkedIn */}
               <div className="rounded-[20px] bg-white p-6 text-center border border-[#e8edea]">
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#eef3f0] text-[#4e7b64]">
@@ -344,10 +341,10 @@ export function BlogDetailPage() {
           </aside>
         </div>
 
-        {/* Last 3 Blogs - Styled like Articles section */}
+        {/* Last 3 Blogs - Using BlogCard component */}
         {lastThreePosts.length > 0 && (
-          <section className="overflow-hidden rounded-[24px] bg-white px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
-            <div className="mx-auto">
+          <section className="overflow-hidden rounded-[24px] bg-[#f6f7f5] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
+            <div className="mx-auto max-w-6xl">
               <div className="flex items-center justify-between mb-8">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
@@ -357,37 +354,15 @@ export function BlogDetailPage() {
                     Continue Reading
                   </h2>
                 </div>
-                <PlainButton href={`/blog/${post.slug}`}>
-                  View More
+                <PlainButton href="/blogs">
+                  View All
                 </PlainButton>
+                  
               </div>
 
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
                 {lastThreePosts.map((related) => (
-                  <div 
-                    key={related.id} 
-                    onClick={() => handleRelatedClick(related.slug)}
-                    className="group rounded-[16px] border border-[#e8edea] overflow-hidden hover:border-[#4e7b64] transition-all duration-300 cursor-pointer"
-                  >
-                    {related.image && (
-                      <div className="h-40 overflow-hidden">
-                        <img 
-                          src={related.image} 
-                          alt={related.title} 
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                    )}
-                    <div className="p-4">
-                      <span className="text-xs font-medium text-[#4e7b64] uppercase tracking-[0.08em]">
-                        {related.category}
-                      </span>
-                      <h3 className="font-display mt-1 text-sm font-semibold text-[#17362f] group-hover:text-[#4e7b64] transition-colors line-clamp-2">
-                        {related.title}
-                      </h3>
-                      <p className="mt-1 text-xs text-[#718078]">{related.date}</p>
-                    </div>
-                  </div>
+                  <BlogCard key={related.id} post={related} />
                 ))}
               </div>
             </div>

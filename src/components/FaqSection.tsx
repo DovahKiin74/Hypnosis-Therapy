@@ -64,7 +64,7 @@ export function FaqSection() {
           })}
         </div>
         <div className="mt-7 text-center">          
-          <PlainButton href="#diagnosis">            
+          <PlainButton href="/contact">            
             See All FAQs
           </PlainButton>
         </div>

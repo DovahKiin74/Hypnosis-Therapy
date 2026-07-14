@@ -43,7 +43,7 @@ export function ProofBar({ embedded = false }: ProofBarProps) {
               lg:last:border-r-0
             `}
           >
-            <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#d6e8da] sm:text-8xl">
+            <p className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#d6e8da] sm:text-6xl xl:text-8xl">
               {item.value}
             </p>
             <p className="mt-1 text-xs text-white/70 sm:text-sm">

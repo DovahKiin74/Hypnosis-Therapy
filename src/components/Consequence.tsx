@@ -84,7 +84,7 @@ export function Consequence() {
             
             <div className="mt-6">
               <RippleButton 
-                href="#diagnosis" 
+                href="/contact" 
                 icon={<ArrowRightIcon size={16} />}
               >
                 Start Your Decision Diagnosis
