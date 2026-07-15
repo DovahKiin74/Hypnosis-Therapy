@@ -1,20 +1,44 @@
 import React, { useState } from 'react';
 import { CheckCircle2Icon, MailIcon, ArrowRightIcon } from 'lucide-react';
-import { RippleButton } from './RippleButton';
+
+const API_URL = 'https://springgreen-mouse-511725.hostingersite.com';
 
 export function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {    
+    event.preventDefault();    
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       setError('Please enter a valid email address.');
       return;
     }
     setError('');
-    setSubmitted(true);
+    setLoading(true);
+
+    try {
+      const url = `${API_URL}/api.php?path=subscribers`;
+      
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });      
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setError(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      console.error('Error:', err); // DEBUG
+      setError('Unable to sign up. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -28,7 +52,6 @@ export function Newsletter() {
         backgroundColor: '#eef3f0',
       }}
     >
-      {/* Overlay to soften the dots */}
       <div className="absolute inset-0 bg-[#eef3f0]/60"></div>
 
       <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -39,7 +62,7 @@ export function Newsletter() {
           id="newsletter-heading"
           className="font-display mt-5 text-3xl font-semibold tracking-[-0.045em] text-[#17362f] sm:text-4xl lg:text-5xl"
         >
-          Let’s Find Your Constraint.
+          Let's Find Your Constraint.
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#496156] sm:text-base">
           One short email per week. No fluff. Just actionable insights to help
@@ -68,20 +91,25 @@ export function Newsletter() {
               <input
                 id="newsletter-email"
                 value={email}
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1 rounded-full border-0 bg-transparent px-5 py-3 text-sm text-[#17362f] placeholder:text-[#89978f] focus:outline-none focus:ring-0"
                 aria-describedby={
                   error ? 'newsletter-error' : 'newsletter-help'
                 }
+                disabled={loading}
               />
-              <RippleButton
-                className="shrink-0 rounded-full px-5 py-3 text-sm"
-                icon={<ArrowRightIcon size={16} />}
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex items-center gap-2 rounded-full bg-[#17362f] px-5 py-3 text-sm font-bold text-white transition-all hover:bg-black focus:outline-none focus:ring-2 focus:ring-[#4e7b64] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Subscribe
-              </RippleButton>
+                {loading ? 'Subscribing...' : 'Subscribe'}
+                <ArrowRightIcon size={16} />
+              </button>
             </div>
             {error && (
               <p
