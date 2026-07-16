@@ -39,9 +39,9 @@ export function Navbar() {
         <Link
           to="/"
           className="font-display text-lg font-bold tracking-tight text-[#17362f]"
-          aria-label="Mark Seigel home"
+          aria-label="Mark Siegel home"
         >
-          MARK <span className="font-normal text-[#17362f]">Seigel</span>
+          MARK <span className="font-normal text-[#17362f]">Siegel</span>
         </Link>
 
         <nav

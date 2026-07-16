@@ -1,182 +1,215 @@
-import React from 'react';
+import { useState } from 'react';
+import {
+  format,
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  endOfWeek,
+  eachDayOfInterval,
+  isSameMonth,
+  isSameDay,
+  isToday,
+  addMonths,
+  subMonths,
+  isBefore,
+  startOfToday,
+} from 'date-fns';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 
-type BookingCalendarProps = {
+interface BookingCalendarProps {
   selectedDate: Date | null;
   selectedTime: string | null;
-  timeSlots: { id: string; time: string; available: boolean }[];
+  timeSlots: { time: string; available: boolean }[];
   loading: boolean;
   availableDates: Date[];
   onDateSelect: (date: Date) => void;
   onTimeSelect: (time: string) => void;
-};
+}
+
+const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 export function BookingCalendar({
   selectedDate,
   selectedTime,
   timeSlots,
   loading,
-  availableDates,
   onDateSelect,
-  onTimeSelect
+  onTimeSelect,
 }: BookingCalendarProps) {
-  const [currentMonth, setCurrentMonth] = React.useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const today = startOfToday();
 
-  const formatDate = (date: Date): string => {
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
-    });
-  };
+  const start = startOfWeek(startOfMonth(currentMonth), { weekStartsOn: 1 });
+  const end = endOfWeek(endOfMonth(currentMonth), { weekStartsOn: 1 });
+  const days = eachDayOfInterval({ start, end });
 
-  const isDateAvailable = (date: Date): boolean => {
-    return availableDates.some(d => d.toDateString() === date.toDateString());
-  };
+  // ✅ Check if current month is before today's month
+  const isCurrentMonthBeforeToday = 
+    currentMonth.getFullYear() < today.getFullYear() ||
+    (currentMonth.getFullYear() === today.getFullYear() && 
+     currentMonth.getMonth() < today.getMonth());
 
-  const isDateSelected = (date: Date): boolean => {
-    return selectedDate ? date.toDateString() === selectedDate.toDateString() : false;
-  };
-
-  const getDaysInMonth = (date: Date): Date[] => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const days = [];
-    for (let i = 1; i <= lastDay.getDate(); i++) {
-      days.push(new Date(year, month, i));
-    }
-    return days;
-  };
-
-  const days = getDaysInMonth(currentMonth);
-
+  const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
   const prevMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1));
+    if (!isCurrentMonthBeforeToday) {
+      setCurrentMonth(subMonths(currentMonth, 1));
+    }
   };
 
-  const nextMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1));
-  };
+  // Group time slots by hour
+  const groupedSlots = timeSlots.reduce((acc, slot) => {
+    const hour = slot.time.split(':')[0];
+    if (!acc[hour]) acc[hour] = [];
+    acc[hour].push(slot);
+    return acc;
+  }, {} as Record<string, typeof timeSlots>);
 
   return (
-    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2">
-      {/* Date Picker */}
-      <div>
-        <h3 className="font-display text-sm font-semibold text-[#17362f] mb-4">
-          1. Select a Date
-        </h3>
-        <div className="rounded-[20px] border border-[#e8edea] bg-white p-4">
-          {/* Month Navigation */}
-          <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col md:flex-row gap-6 w-full">
+      
+      {/* LEFT: Calendar */}
+      <div className="md:w-1/2">
+        {/* Month Navigation */}
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-stone-800">
+            {format(currentMonth, 'MMMM yyyy')}
+          </h3>
+          <div className="flex gap-1">
             <button
               onClick={prevMonth}
-              className="rounded-full p-2 hover:bg-[#eef3f0] transition-colors"
+              disabled={isCurrentMonthBeforeToday}
+              className={`
+                p-1 rounded-full transition-colors
+                ${isCurrentMonthBeforeToday 
+                  ? 'text-stone-200 cursor-not-allowed' 
+                  : 'text-stone-400 hover:text-stone-600 hover:bg-stone-100'
+                }
+              `}
             >
-              <ChevronLeftIcon size={20} className="text-[#718078]" />
+              <ChevronLeftIcon className="h-4 w-4" />
             </button>
-            <span className="font-display font-semibold text-[#17362f]">
-              {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-            </span>
             <button
               onClick={nextMonth}
-              className="rounded-full p-2 hover:bg-[#eef3f0] transition-colors"
+              className="p-1 rounded-full hover:bg-stone-100 transition-colors text-stone-400 hover:text-stone-600"
             >
-              <ChevronRightIcon size={20} className="text-[#718078]" />
+              <ChevronRightIcon className="h-4 w-4" />
             </button>
           </div>
-
-          {/* Day Headers */}
-          <div className="grid grid-cols-7 gap-1 text-center">
-            {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((day) => (
-              <div key={day} className="py-1 text-xs font-medium text-[#718078]">
-                {day}
-              </div>
-            ))}
-          </div>
-
-          {/* Days */}
-          <div className="grid grid-cols-7 gap-1 mt-1">
-            {days.map((date) => {
-              const available = isDateAvailable(date);
-              const selected = isDateSelected(date);
-              const isToday = date.toDateString() === new Date().toDateString();
-
-              return (
-                <button
-                  key={date.toISOString()}
-                  onClick={() => available && onDateSelect(date)}
-                  disabled={!available}
-                  className={`
-                    aspect-square rounded-full flex items-center justify-center text-sm
-                    transition-all duration-200
-                    ${available ? 'cursor-pointer hover:bg-[#eef3f0]' : 'cursor-not-allowed text-[#d0dcd4]'}
-                    ${selected ? 'bg-[#4e7b64] text-white hover:bg-[#3a624f]' : ''}
-                    ${isToday && !selected ? 'border border-[#4e7b64] text-[#17362f]' : ''}
-                  `}
-                >
-                  {date.getDate()}
-                </button>
-              );
-            })}
-          </div>
         </div>
 
-        {selectedDate && (
-          <p className="mt-3 text-sm text-[#4d6259]">
-            Selected: <span className="font-medium">{formatDate(selectedDate)}</span>
-          </p>
-        )}
+        {/* Days of Week */}
+        <div className="grid grid-cols-7 gap-1 mb-2">
+          {weekDays.map((day) => (
+            <div
+              key={day}
+              className="text-center text-[10px] font-medium text-stone-400 py-1"
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+
+        {/* Calendar Grid - Fully Rounded */}
+        <div className="grid grid-cols-7 gap-1">
+          {days.map((day: Date) => {
+            const isCurrentMonth = isSameMonth(day, currentMonth);
+            const isSelected = selectedDate && isSameDay(day, selectedDate);
+            const isTodayDate = isToday(day);
+            // ✅ Disable past dates
+            const isPastDate = isBefore(day, today) && !isToday(day);
+
+            return (
+              <button
+                key={day.toISOString()}
+                onClick={() => onDateSelect(day)}
+                disabled={!isCurrentMonth || isPastDate}
+                className={`
+                  aspect-square w-full rounded-full text-sm font-medium transition-all duration-200 text-center
+                  ${!isCurrentMonth ? 'text-stone-200 cursor-not-allowed' : ''}
+                  ${isPastDate && isCurrentMonth ? 'text-stone-300 cursor-not-allowed' : ''}
+                  ${isSelected ? 'bg-[#17362f] text-white shadow-sm' : ''}
+                  ${isTodayDate && !isSelected ? 'border-2 border-[#4e7b64] text-[#17362f]' : ''}
+                  ${!isSelected && !isTodayDate && !isPastDate && isCurrentMonth ? 'hover:bg-stone-50 text-stone-700' : ''}
+                `}
+              >
+                {format(day, 'd')}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Time Slots */}
-      <div>
-        <h3 className="font-display text-sm font-semibold text-[#17362f] mb-4">
-          2. Select a Time
-        </h3>
-        <div className="rounded-[20px] border border-[#e8edea] bg-white p-4 min-h-[200px]">
-          {!selectedDate ? (
-            <div className="flex h-40 items-center justify-center text-sm text-[#718078]">
-              Please select a date first
-            </div>
-          ) : loading ? (
-            <div className="flex h-40 items-center justify-center">
-              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[#4e7b64] border-t-transparent"></div>
-            </div>
-          ) : timeSlots.length === 0 ? (
-            <div className="flex h-40 items-center justify-center text-sm text-[#718078]">
-              No available time slots for this date
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 gap-2">
-              {timeSlots.map((slot) => (
-                <button
-                  key={slot.id}
-                  onClick={() => slot.available && onTimeSelect(slot.time)}
-                  disabled={!slot.available}
-                  className={`
-                    rounded-[12px] py-2.5 px-3 text-sm font-medium
-                    transition-all duration-200
-                    ${slot.available && selectedTime === slot.time 
-                      ? 'bg-[#4e7b64] text-white' 
-                      : slot.available
-                      ? 'bg-[#eef3f0] text-[#17362f] hover:bg-[#dce6e0] cursor-pointer'
-                      : 'bg-[#f6f7f5] text-[#d0dcd4] cursor-not-allowed line-through'
-                    }
-                  `}
-                >
-                  {slot.time}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+      {/* RIGHT: Time Slots */}
+      <div className="md:w-1/2">
+        {selectedDate ? (
+          <>
+            <h4 className="text-sm font-medium text-stone-600 mb-3">
+              {format(selectedDate, 'EEEE, MMM d')}
+            </h4>
 
-        {selectedTime && (
-          <p className="mt-3 text-sm text-[#4d6259]">
-            Selected: <span className="font-medium">{selectedTime}</span>
-          </p>
+            {loading ? (
+              <div className="flex items-center justify-center py-6">
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-stone-200 border-t-[#4e7b64]" />
+              </div>
+            ) : timeSlots.length === 0 ? (
+              <div className="text-center py-6 text-sm text-stone-400">
+                No available times
+              </div>
+            ) : (
+              <div className="space-y-2 max-h-[320px] overflow-y-auto pr-1">
+                {Object.entries(groupedSlots).map(([hour, slots]) => {
+                  const hourNum = parseInt(hour);
+                  const ampm = hourNum >= 12 ? 'PM' : 'AM';
+                  const displayHour = hourNum > 12 ? hourNum - 12 : hourNum || 12;
+
+                  return (
+                    <div key={hour}>
+                      <div className="text-[10px] font-medium text-stone-400 mb-1">
+                        {displayHour}:00 {ampm}
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {slots.map((slot) => (
+                          <button
+                            key={slot.time}
+                            onClick={() => slot.available && onTimeSelect(slot.time)}
+                            disabled={!slot.available}
+                            className={`
+                              px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200
+                              ${selectedTime === slot.time ? 'bg-[#17362f] text-white' : ''}
+                              ${slot.available && selectedTime !== slot.time ? 'bg-stone-50 text-stone-700 hover:bg-stone-100' : ''}
+                              ${!slot.available ? 'bg-stone-50/50 text-stone-300 cursor-not-allowed line-through' : ''}
+                            `}
+                          >
+                            {slot.time}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Legend */}
+            <div className="mt-4 flex items-center gap-3 text-[10px] text-stone-400">
+              <span className="flex items-center gap-1">
+                <span className="h-2 w-2 rounded-full bg-[#17362f]" />
+                Selected
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="h-2 w-2 rounded-full bg-stone-100 border border-stone-200" />
+                Available
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="h-2 w-2 rounded-full bg-stone-50 border border-stone-200 line-through" />
+                Unavailable
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className="flex items-center justify-center h-full text-sm text-stone-400">
+            Select a date
+          </div>
         )}
       </div>
     </div>

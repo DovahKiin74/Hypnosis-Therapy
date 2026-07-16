@@ -335,7 +335,7 @@ const testimonials: Testimonial[] = [
     name: 'Kathryn Dager',
     role: 'Leadership & Culture Expert',
     quote:
-      'I am delighted to offer this stellar recommendation for Mark Seigel, The Personal Mind Trainer, an expert in NLP and hypnosis, and the author of the inspirational and instructional book, "Designing The Ultimate You." Mark has dedicated his career to helping individuals calm the consistent stress and discord that can inhibit personal growth.',
+      'I am delighted to offer this stellar recommendation for Mark Siegel, The Personal Mind Trainer, an expert in NLP and hypnosis, and the author of the inspirational and instructional book, "Designing The Ultimate You." Mark has dedicated his career to helping individuals calm the consistent stress and discord that can inhibit personal growth.',
     image: '/testimonials/kathryn.jpg'
   },
   // ─── CARROLL S. GOLDEN ───

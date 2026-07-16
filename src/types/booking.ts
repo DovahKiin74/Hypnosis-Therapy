@@ -4,17 +4,18 @@ export type TimeSlot = {
   available: boolean;
 };
 
-export type BookingData = {
-  id?: string;
+// types/booking.ts
+export interface BookingData {
   name: string;
   email: string;
   phone: string;
+  notes?: string;
   date: string;
   time: string;
-  notes: string;
-  createdAt?: string;
-  status: 'pending' | 'confirmed' | 'cancelled';
-};
+  duration?: number;
+  bookingType?: string;
+  status: string;
+}
 
 export type BookingResponse = {
   success: boolean;

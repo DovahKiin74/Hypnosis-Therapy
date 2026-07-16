@@ -185,3 +185,13 @@ input {
   font-style: italic;
   color: #17362f;
 }
+
+.field-design{
+  outline: none;
+}
+.field-design:hover{
+  border: 1px solid #649c8f;
+}
+.field-design:focus{
+  border: 1px solid #17362f;
+}

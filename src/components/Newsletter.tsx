@@ -30,11 +30,12 @@ export function Newsletter() {
 
       if (response.ok) {
         setSubmitted(true);
+        setEmail(''); // Clear the input
       } else {
         setError(data.error || 'Something went wrong. Please try again.');
       }
     } catch (err) {
-      console.error('Error:', err); // DEBUG
+      console.error('Error:', err);
       setError('Unable to sign up. Please try again later.');
     } finally {
       setLoading(false);
@@ -70,61 +71,63 @@ export function Newsletter() {
           you.
         </p>
 
-        {submitted ? (
-          <div
-            className="mx-auto mt-8 flex max-w-lg items-center justify-center gap-3 rounded-2xl bg-white px-5 py-4 text-sm font-medium text-[#275b43] shadow-sm"
-            role="status"
-          >
-            <CheckCircle2Icon size={20} />
-            You're on the list. Your first note is on its way.
+        <form
+          className="mx-auto mt-8 max-w-xl"
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <div className="flex items-center gap-2 rounded-full bg-white p-1 shadow-sm focus-within:ring-2 focus-within:ring-[#4e7b64] focus-within:ring-offset-2">
+            <label className="sr-only" htmlFor="newsletter-email">
+              Email address
+            </label>
+            <input
+              id="newsletter-email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 rounded-full border-0 bg-transparent px-5 py-3 text-sm text-[#17362f] placeholder:text-[#89978f] focus:outline-none focus:ring-0"
+              aria-describedby={
+                error ? 'newsletter-error' : 'newsletter-help'
+              }
+              disabled={loading}
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="inline-flex items-center gap-2 rounded-full bg-[#17362f] px-5 py-3 text-sm font-bold text-white transition-all hover:bg-black focus:outline-none focus:ring-2 focus:ring-[#4e7b64] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Subscribing...' : 'Subscribe'}
+              <ArrowRightIcon size={16} />
+            </button>
           </div>
-        ) : (
-          <form
-            className="mx-auto mt-8 max-w-xl"
-            onSubmit={handleSubmit}
-            noValidate
-          >
-            <div className="flex items-center gap-2 rounded-full bg-white p-1 shadow-sm focus-within:ring-2 focus-within:ring-[#4e7b64] focus-within:ring-offset-2">
-              <label className="sr-only" htmlFor="newsletter-email">
-                Email address
-              </label>
-              <input
-                id="newsletter-email"
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 rounded-full border-0 bg-transparent px-5 py-3 text-sm text-[#17362f] placeholder:text-[#89978f] focus:outline-none focus:ring-0"
-                aria-describedby={
-                  error ? 'newsletter-error' : 'newsletter-help'
-                }
-                disabled={loading}
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="inline-flex items-center gap-2 rounded-full bg-[#17362f] px-5 py-3 text-sm font-bold text-white transition-all hover:bg-black focus:outline-none focus:ring-2 focus:ring-[#4e7b64] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Subscribing...' : 'Subscribe'}
-                <ArrowRightIcon size={16} />
-              </button>
+
+          {/* Success Message - Below the input, doesn't replace the form */}
+          {submitted && (
+            <div
+              className="mt-4 flex items-center justify-center gap-3 rounded-2xl bg-emerald-50 px-5 py-3 text-sm font-medium text-emerald-700 border border-emerald-200"
+              role="status"
+            >
+              <CheckCircle2Icon size={18} />
+              You're on the list. Your first note is on its way.
             </div>
-            {error && (
-              <p
-                id="newsletter-error"
-                className="mt-3 text-left text-xs font-medium text-[#a33e35]"
-                role="alert"
-              >
-                {error}
-              </p>
-            )}
-            <p id="newsletter-help" className="mt-3 text-xs text-[#587164]">
-              No spam. Unsubscribe anytime.
+          )}
+
+          {error && (
+            <p
+              id="newsletter-error"
+              className="mt-3 text-left text-xs font-medium text-[#a33e35]"
+              role="alert"
+            >
+              {error}
             </p>
-          </form>
-        )}
+          )}
+          <p id="newsletter-help" className="mt-3 text-xs text-[#587164]">
+            No spam. Unsubscribe anytime.
+          </p>
+        </form>
       </div>
     </section>
   );
