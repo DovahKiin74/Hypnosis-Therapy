@@ -18,7 +18,7 @@ export function RippleButton({
 }: RippleButtonProps) {
   const { ripples, createRipple, clearRipples } = useRipple();
 
-  const baseStyles = 'group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-sm font-bold text-white transition-all duration-300 bg-[#17362f] hover:bg-black';
+  const baseStyles = 'group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-sm font-bold text-white transition-all duration-300 bg-[#0951f6] hover:bg-black';
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     createRipple(e);

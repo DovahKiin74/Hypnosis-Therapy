@@ -3,7 +3,7 @@ import { ProofBar } from './ProofBar';
 
 export function Rationale() {
   return (
-    <div className="rounded-[24px] overflow-hidden bg-[#17362f]">
+    <div className="rounded-[24px] overflow-hidden bg-[#02319c]">
       <section
         className="relative px-6 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-[48px] lg:py-24"
         aria-labelledby="problem-heading"

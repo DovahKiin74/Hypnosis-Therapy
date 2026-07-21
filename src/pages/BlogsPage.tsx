@@ -26,7 +26,7 @@ export function BlogsPage() {
   const filteredPosts = getFilteredPosts(searchTerm, selectedCategory);
 
   return (
-    <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
+    <main className="w-full bg-[#f6f7f5] text-[#001e61] px-[16px] py-[16px]">
       <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
 
         {/* Hero Section - Latest Blog */}
@@ -46,23 +46,23 @@ export function BlogsPage() {
                     className="flex items-center justify-center bg-[#eef3f0]"
                     style={{ maxHeight: '400px', minHeight: '300px' }}
                   >
-                    <span className="text-[#4e7b64] font-medium">No image</span>
+                    <span className="text-[#000000] font-medium">No image</span>
                   </div>
                 )}
-                <div className="absolute top-4 left-4 bg-[#4e7b64] text-white text-xs font-bold px-3 py-1 rounded-full">
+                <div className="absolute top-4 left-4 bg-[#000] text-white text-xs font-bold px-3 py-1 rounded-full">
                   Latest
                 </div>
               </div>
             </div>
             <div className="lg:w-1/2">
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-xs font-medium text-[#4e7b64] uppercase tracking-[0.08em]">
+                <span className="text-xs font-medium text-[#000000] uppercase tracking-[0.08em]">
                   {latestPost.category}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-[#d0dcd4]"></span>
                 <span className="text-xs text-[#718078]">{latestPost.date}</span>
               </div>
-              <h1 className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-4xl lg:text-5xl">
+              <h1 className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#001e61] sm:text-4xl lg:text-5xl">
                 {latestPost.title}
               </h1>
               <p className="mt-4 text-base leading-relaxed text-[#4d6259] sm:text-lg">
@@ -91,10 +91,10 @@ export function BlogsPage() {
         <section className="overflow-hidden rounded-[24px] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
                 Articles
               </p>
-              <h2 className="font-display mt-1 text-2xl font-semibold text-[#17362f] sm:text-3xl">
+              <h2 className="font-display mt-1 text-2xl font-semibold text-[#001e61] sm:text-3xl">
                 Insights for Clearer Thinking
               </h2>
             </div>
@@ -112,7 +112,7 @@ export function BlogsPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
                     selectedCategory === category
-                      ? 'bg-[#17362f] text-white'
+                      ? 'bg-[#001e61] text-white'
                       : 'bg-white text-[#4d6259] hover:bg-[#eef3f0]'
                   }`}
                 >
@@ -125,7 +125,7 @@ export function BlogsPage() {
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-2 text-sm border border-[#d0dcd4] rounded-full bg-white text-[#17362f] placeholder-[#a0b0a8] focus:outline-none focus:ring-2 focus:ring-[#4e7b64] sm:w-64"
+              className="px-4 py-2 text-sm border border-[#d0dcd4] rounded-full bg-white text-[#001e61] placeholder-[#a0b0a8] focus:outline-none focus:ring-2 focus:ring-[#000] sm:w-64"
             />
           </div>
 

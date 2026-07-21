@@ -24,7 +24,7 @@ const proofPoints = [
 export function ProofBar({ embedded = false }: ProofBarProps) {
   return (
     <section
-      className={`bg-[#17362f] px-5 py-7 text-white sm:px-10 lg:px-[50px] ${embedded ? 'rounded-b-[24px]' : 'rounded-[24px] py-8'}`}
+      className={`bg-[#02319c] px-5 py-7 text-white sm:px-10 lg:px-[50px] ${embedded ? 'rounded-b-[24px]' : 'rounded-[24px] py-8'}`}
       aria-label="Practice results"
     >
       <div

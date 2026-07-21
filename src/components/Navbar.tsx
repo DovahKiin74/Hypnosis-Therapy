@@ -17,6 +17,10 @@ const navigationItems = [
     to: '/how-it-works'
   },
   {
+    label: 'Circle of Excellence', // Added this
+    to: '/circle-of-excellence'
+  },
+  {
     label: 'Blogs',
     to: '/blogs'
   },
@@ -38,10 +42,10 @@ export function Navbar() {
       <div className="mx-auto flex items-center justify-between rounded-[20px] bg-[#eee] px-5 py-4 sm:px-7 max-w-[1600px]">
         <Link
           to="/"
-          className="font-display text-lg font-bold tracking-tight text-[#17362f]"
+          className="font-display text-lg font-bold tracking-tight text-[#0951f6]"
           aria-label="Mark Siegel home"
         >
-          MARK <span className="font-normal text-[#17362f]">Siegel</span>
+          Mark <span className="font-normal text-[#0951f6]">Siegel</span>
         </Link>
 
         <nav
@@ -53,7 +57,7 @@ export function Navbar() {
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${isActive ? 'text-[#17362f]' : 'text-[#52665d] hover:text-[#17362f]'}`
+                `text-sm font-medium transition-colors ${isActive ? 'text-[#0951f6]' : 'text-[#52665d] hover:text-[#0951f6]'}`
               }
             >
               {item.label}
@@ -73,7 +77,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="rounded-full p-2 text-[#17362f] lg:hidden"
+          className="rounded-full p-2 text-[#0951f6] lg:hidden"
           aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
@@ -93,7 +97,7 @@ export function Navbar() {
               to={item.to}
               onClick={closeMenu}
               className={({ isActive }) =>
-                `rounded-xl px-4 py-3 text-sm font-medium transition-colors ${isActive ? 'bg-[#e8f0ff] text-[#17362f]' : 'text-[#52665d] hover:bg-[#f4f7f5] hover:text-[#17362f]'}`
+                `rounded-xl px-4 py-3 text-sm font-medium transition-colors ${isActive ? 'bg-[#e8f0ff] text-[#0951f6]' : 'text-[#52665d] hover:bg-[#f4f7f5] hover:text-[#0951f6]'}`
               }
             >
               {item.label}
@@ -102,7 +106,7 @@ export function Navbar() {
           <Link
             to="/contact"
             onClick={closeMenu}
-            className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#17362f] px-4 py-3 text-sm font-bold text-white hover:bg-[#1f4a3f]"
+            className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#0951f6] px-4 py-3 text-sm font-bold text-white hover:bg-[#1f4a3f]"
           >
             <CalendarDaysIcon size={16} />
             Book a Discovery Call

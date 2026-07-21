@@ -38,12 +38,12 @@ export function ProcessSteps() {
         aria-labelledby="process-heading"
       >
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
             One System. Three Phases.
           </p>
           <h2
             id="process-heading"
-            className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-5xl"
+            className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#001e61] sm:text-5xl"
           >
             Diagnose. Rebuild. Execute.
           </h2>
@@ -63,7 +63,7 @@ export function ProcessSteps() {
           {steps.map((step, index) => (
             <div
               key={step.title}
-              className="relative rounded-[20px] bg-[#17362F] overflow-hidden flex flex-col border border-[#17362F]"
+              className="relative rounded-[20px] bg-[#001e61] overflow-hidden flex flex-col border border-[#001e61]"
             >
               {/* Content */}
               <div className="relative z-10 flex flex-col items-center px-6 py-12 flex-1 rounded-[16px] bg-[#eee] overflow-hidden">
@@ -76,12 +76,12 @@ export function ProcessSteps() {
                 </span>
                 
                 {/* Icon */}
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#C5C5C5] text-[#17362F] relative z-10">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#C5C5C5] text-[#001e61] relative z-10">
                   <step.icon size={24} />
                 </div>
                 
                 {/* Title */}
-                <h3 className="font-display mt-4 text-base font-semibold text-[#17362f] relative z-10">
+                <h3 className="font-display mt-4 text-base font-semibold text-[#001e61] relative z-10">
                   {step.title}
                 </h3>
                 

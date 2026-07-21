@@ -7,10 +7,11 @@ import {
   UserIcon,
   MessageCircleIcon,
   SendIcon,
-  CheckCircleIcon,
   UsersIcon,
   SparklesIcon,
-  VideoIcon
+  VideoIcon,
+  XIcon,
+  GlobeIcon
 } from 'lucide-react';
 import { RippleButton } from '../components/RippleButton';
 import { Footer } from '../components/Footer';
@@ -77,7 +78,8 @@ export function ContactPage() {
 
   const [step, setStep] = useState<'calendar' | 'form' | 'success'>('calendar');
   const [selectedType, setSelectedType] = useState<BookingType>('discovery');
-  const [bookingResponse, setBookingResponse] = useState<{ message: string; bookingId?: string } | null>(null);
+  const [bookingResponse, setBookingResponse] = useState<{ message: string; bookingId?: string; meetLink?: string } | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   const handleTypeSelect = (type: BookingType) => {
     setSelectedType(type);
@@ -92,6 +94,16 @@ export function ContactPage() {
       setStep('form');
     }
   };
+
+  // Add this helper at the top of your file (after imports)
+  function getEasternTimeDisplay(): string {
+    const now = new Date();
+    const month = now.getMonth();
+    // March (2) to October (10) is Daylight Saving (EDT)
+    const abbr = (month >= 2 && month <= 10) ? 'EDT' : 'EST';
+    const offset = abbr === 'EDT' ? 'UTC -4' : 'UTC -5';
+    return `${abbr} (${offset})`;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,7 +124,7 @@ export function ContactPage() {
     const response = await submitBooking(fullData);
     setBookingResponse(response);
     if (response.success) {
-      setStep('success');
+      setShowModal(true);
     } else {
       alert(response.message);
     }
@@ -121,16 +133,16 @@ export function ContactPage() {
   const availableDates = getAvailableDates();
 
   return (
-    <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
+    <main className="w-full bg-[#f6f7f5] text-[#0951f6] px-[16px] py-[16px]">
       <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
 
         {/* Hero Section */}
-        <section className="overflow-hidden rounded-[24px] bg-[#17362f] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 text-center relative">
-          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-[#4e7b64]/10"></div>
-          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#4e7b64]/10"></div>
+        <section className="overflow-hidden rounded-[24px] bg-[#0951f6] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 text-center relative">
+          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-[#000]/10"></div>
+          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#000]/10"></div>
           
           <div className="relative z-10 mx-auto max-w-4xl">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#4e7b64]/20 text-[#d7e9dc]">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#000]/20 text-[#d7e9dc]">
               <CalendarDaysIcon size={28} />
             </div>
             <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-[#d7e9dc]">
@@ -160,7 +172,7 @@ export function ContactPage() {
             </div>
           </div>
 
-          {/* RIGHT: Booking Calendar (unchanged) */}
+          {/* RIGHT: Booking Calendar */}
           <div className="bg-white rounded-[24px] p-6 sm:p-8 shadow-sm border border-stone-100">            
             {/* Call Type Selector */}
             <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -194,7 +206,7 @@ export function ContactPage() {
                 }
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-[#17362f]">
+                <p className="text-sm font-medium text-[#0951f6]">
                   {bookingTypes.find(t => t.id === selectedType)?.title}
                 </p>
                 <p className="text-xs text-[#718078]">
@@ -217,7 +229,11 @@ export function ContactPage() {
                   onDateSelect={handleDateSelect}
                   onTimeSelect={handleTimeSelect}
                 />
-                <div className="mt-6 flex justify-end">
+                <div className="mt-6 flex items-center justify-between">
+                  <span className="text-xs text-stone-400 flex items-center gap-1.5">
+                    <GlobeIcon className="h-3.5 w-3.5" />
+                    All times in {getEasternTimeDisplay()}
+                  </span>
                   <RippleButton
                     onClick={handleNext}
                     className={!selectedDate || !selectedTime ? 'opacity-50 cursor-not-allowed' : ''}
@@ -252,7 +268,8 @@ export function ContactPage() {
                           placeholder="John Doe"
                           value={bookingData.name || ''}
                           onChange={(e) => updateBookingData({ name: e.target.value })}
-                          className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 outline-none transition-all field-design"
+                          disabled={submitting}
+                          className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 outline-none transition-all field-design disabled:opacity-50 disabled:cursor-not-allowed"
                         />
                       </div>
                     </div>
@@ -268,8 +285,17 @@ export function ContactPage() {
                           required
                           placeholder="(123) 456-7890"
                           value={bookingData.phone || ''}
-                          onChange={(e) => updateBookingData({ phone: e.target.value })}
-                          className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 placeholder:text-stone-400 field-design transition-all"
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            const digitsOnly = value.replace(/[^0-9]/g, '');
+                            if (digitsOnly.length <= 15) {
+                              const cleaned = value.replace(/[^0-9\s\(\)\-]/g, '');
+                              updateBookingData({ phone: cleaned });
+                            }
+                          }}
+                          disabled={submitting}
+                          maxLength={20}
+                          className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 placeholder:text-stone-400 field-design transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         />
                       </div>
                     </div>
@@ -287,14 +313,15 @@ export function ContactPage() {
                         placeholder="john@example.com"
                         value={bookingData.email || ''}
                         onChange={(e) => updateBookingData({ email: e.target.value })}
-                        className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 placeholder:text-stone-400 field-design transition-all"
+                        disabled={submitting}
+                        className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 placeholder:text-stone-400 field-design transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-stone-700 mb-1.5">
-                      Notes <span className="text-stone-400 text-xs font-normal">(Optional)</span>
+                      Notes
                     </label>
                     <div className="relative">
                       <MessageCircleIcon size={18} className="absolute left-4 top-4 text-stone-400" />
@@ -303,21 +330,32 @@ export function ContactPage() {
                         rows={3}
                         value={bookingData.notes || ''}
                         onChange={(e) => updateBookingData({ notes: e.target.value })}
-                        className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 placeholder:text-stone-400 field-design resize-none transition-all"
+                        disabled={submitting}
+                        className="w-full rounded-xl border border-stone-200 bg-white pl-11 pr-4 py-3 text-sm text-stone-700 placeholder:text-stone-400 field-design resize-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
                   </div>
 
                   <div className="flex items-center justify-end gap-3 pt-4 border-t border-stone-100">
-                    <button
-                      type="button"
-                      onClick={() => setStep('calendar')}
-                      className="px-6 py-3 text-sm font-medium text-stone-500 hover:text-stone-700 transition-colors"
-                    >
-                      Back
-                    </button>
+                    {/* Back button - hidden when submitting */}
+                    {!submitting && (
+                      <button
+                        type="button"
+                        onClick={() => setStep('calendar')}
+                        className="px-6 py-3 text-sm font-medium text-stone-500 hover:text-stone-700 transition-colors"
+                      >
+                        Back
+                      </button>
+                    )}
+                    
                     <RippleButton
-                      icon={<SendIcon size={16} />}
+                      icon={!submitting ? <SendIcon size={16} /> : undefined}
+                      className={`
+                        ${submitting 
+                          ? 'bg-stone-700 text-white/70 cursor-not-allowed hover:bg-stone-700' 
+                          : ''
+                        }
+                      `}
                     >
                       {submitting ? 'Booking...' : 'Confirm Booking'}
                     </RippleButton>
@@ -325,40 +363,55 @@ export function ContactPage() {
                 </form>
               </>
             )}
-
-            {step === 'success' && bookingResponse && (
-              <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 animate-ping rounded-full bg-emerald-100 opacity-75" />
-                  <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                    <CheckCircleIcon size={44} strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                <h2 className="text-2xl font-semibold text-stone-900">
-                  Booking Confirmed!
-                </h2>
-
-                <p className="mt-2 text-sm text-stone-500 max-w-sm">
-                  {bookingResponse.message}
-                </p>
-
-                {bookingResponse.bookingId && (
-                  <p className="mt-1 text-xs text-stone-400 font-mono"></p>
-                )}
-
-                <div className="my-6 w-12 h-px bg-stone-200" />
-
-                <p className="text-sm text-stone-400 max-w-sm">
-                  A confirmation email has been sent to your inbox.
-                </p>
-              </div>
-            )}
           </div>
         </div>
 
         <Footer />
       </div>
+
+      {/* ============================================
+          SUCCESS MODAL OVERLAY
+      ============================================ */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md p-4"
+        >
+          <div 
+            className="relative max-w-[480px] w-full bg-white rounded-3xl py-12 px-8 shadow-2xl text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            {/* Shield with Tick Image */}
+            <div className="w-[140px] h-auto mx-auto relative">
+              <div className="">
+                <div>
+                  <img 
+                    src="/Tick.png" 
+                    alt="Confirmed" 
+                    className="relative z-[2] w-32 h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)] object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Title */}
+            <h2 className="text-4xl font-bold text-black">Confirmed!</h2>
+            <p className="mt-1.5 text-sm text-stone-500">
+              A confirmation email with the details has been sent to <strong>{bookingData.email || 'you@example.com'}</strong>.
+            </p>
+
+            {/* Done Button with Ripple Effect */}
+            <a 
+              href="https://linen-guanaco-339583.hostingersite.com" 
+              className="block w-full mt-8 md:mt-12 lg:mt-16"
+            >
+              <RippleButton className="w-full text-center justify-center">
+                Done
+              </RippleButton>
+            </a>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

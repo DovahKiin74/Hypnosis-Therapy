@@ -4,7 +4,7 @@ import { RippleButton } from './RippleButton';
 export function Reframe() {
   return (
     <section
-      className="rounded-[24px] overflow-hidden px-5 sm:px-10 lg:px-[50px] py-16 lg:py-24 bg-[#b4e4ad]"
+      className="rounded-[24px] overflow-hidden px-5 sm:px-10 lg:px-[50px] py-16 lg:py-24 bg-[#e1eaff]"
       aria-labelledby="reframe-heading"
     >
       <div className="mx-auto max-w-6xl">
@@ -12,7 +12,7 @@ export function Reframe() {
         <div className="text-center mb-16">
           <h2
             id="reframe-heading"
-            className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-4xl lg:text-7xl"
+            className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#001e61] sm:text-4xl lg:text-7xl"
           >
             Every result comes from decisions,
             <br />
@@ -41,7 +41,7 @@ export function Reframe() {
           <div className="flex-1 flex flex-col justify-between">
             {/* Description - pushed to top */}
             <div>
-              <p className="text-base leading-relaxed text-[#17362f] sm:text-lg lg:text-xl font-normal">
+              <p className="text-base leading-relaxed text-[#000] sm:text-lg lg:text-xl font-normal">
                 Most business owners spend years trying to fix their strategy 
                 when the real problem is how they're making decisions. 
                 We help you see what you've been missing.

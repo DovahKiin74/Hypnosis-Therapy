@@ -1,6 +1,16 @@
+/// <reference types="vite/client" />
+
 import { useState, useEffect } from 'react';
 
-const API_URL = 'https://springgreen-mouse-511725.hostingersite.com';
+const API_URL = 'https://purposedrivenhero.com/';
+
+// Check if we're in production (Vite handles this)
+const isProd = typeof import.meta !== 'undefined' && import.meta.env?.PROD === true;
+
+// Google Apps Script URL with Cloudflare Worker proxy
+const APPS_SCRIPT_URL = isProd
+  ? 'https://meet-proxy.malikshahroze123.workers.dev/'
+  : 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbzJC2C20TQfNYnkoVZ6LY3o2ckY_3u0NMi9cDQ84DneNwNiMgc7VXzKhiNvUjqks7FGjg/exec';
 
 export interface BookingData {
   name: string;
@@ -12,6 +22,14 @@ export interface BookingData {
   duration?: number;
   bookingType?: string;
   status: string;
+  meetLink?: string;
+}
+
+export interface BookingResponse {
+  success: boolean;
+  message: string;
+  bookingId?: string;
+  meetLink?: string;
 }
 
 export function useBooking() {
@@ -38,7 +56,6 @@ export function useBooking() {
       const data = await response.json();
       setCalendarSettings(data);
     } catch (error) {
-      console.error('Error fetching calendar settings:', error);
       const defaults = [
         { day_of_week: 'monday', working_hours_start: '09:00', working_hours_end: '17:00', is_available: true, breaks: [{ id: '1', start: '12:00', end: '15:00' }] },
         { day_of_week: 'tuesday', working_hours_start: '09:00', working_hours_end: '17:00', is_available: true, breaks: [{ id: '1', start: '13:00', end: '14:00' }] },
@@ -74,7 +91,6 @@ export function useBooking() {
     const end = daySetting.working_hours_end;
     const breaks = daySetting.breaks || [];
     
-    // Generate all possible time slots based on working hours
     const allSlots: string[] = [];
     let current = new Date(`2000-01-01T${start}`);
     const endTime = new Date(`2000-01-01T${end}`);
@@ -95,7 +111,6 @@ export function useBooking() {
       current.setMinutes(current.getMinutes() + 15);
     }
 
-    // ✅ Use the WORKING endpoint
     const availableSlots = await getAvailableSlots(date, selectedDuration);
     
     const slots = allSlots.map(time => ({
@@ -107,7 +122,6 @@ export function useBooking() {
     setSelectedTime(null);
   }
 
-  // ✅ Use the working endpoint
   async function getAvailableSlots(date: Date, duration: number): Promise<string[]> {
     try {
       const dateStr = date.toISOString().split('T')[0];
@@ -124,8 +138,73 @@ export function useBooking() {
       const data = await response.json();
       return data.availableSlots || [];
     } catch (error) {
-      console.error('Error fetching available slots:', error);
       return [];
+    }
+  }
+
+  // ============================================
+  // GENERATE MEET LINK FROM APPS SCRIPT
+  // ============================================
+  async function generateMeetLink(bookingData: {
+    clientName: string;
+    email: string;
+    date: string;
+    time: string;
+    duration: number;
+    bookingType: string;
+  }): Promise<string | null> {
+    try {
+      const startDateTime = new Date(`${bookingData.date}T${bookingData.time}:00`);
+      const endDateTime = new Date(startDateTime.getTime() + bookingData.duration * 60000);
+      
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: `${bookingData.bookingType} with Mark Siegel`,
+          startTime: startDateTime.toISOString(),
+          endTime: endDateTime.toISOString(),
+          clientEmail: bookingData.email,
+          description: `Client: ${bookingData.clientName}`,
+          timeZone: 'America/New_York'
+        })
+      });
+      
+      if (!response.ok) {
+        return null;
+      }
+      
+      const data = await response.json();
+      
+      if (data.success && data.meetLink) {
+        return data.meetLink;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
+  }
+
+  // ============================================
+  // UPDATE BOOKING WITH MEET LINK
+  // ============================================
+  async function updateBookingWithMeetLink(bookingId: number, meetLink: string) {
+    try {
+      const response = await fetch(`${API_URL}/api.php?path=bookings/update-meet-link`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bookingId, meetLink })
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to update meet link');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      throw error;
     }
   }
 
@@ -154,7 +233,10 @@ export function useBooking() {
     }
   };
 
-  const submitBooking = async (data: BookingData) => {
+  // ============================================
+  // SUBMIT BOOKING WITH MEET LINK
+  // ============================================
+  const submitBooking = async (data: BookingData): Promise<BookingResponse> => {
     setSubmitting(true);
     try {
       const checkResponse = await fetch(`${API_URL}/api.php?path=bookings/check-availability`, {
@@ -195,13 +277,38 @@ export function useBooking() {
 
       const result = await response.json();
       
-      if (response.ok) {
-        return { success: true, message: result.message || 'Booking confirmed!', bookingId: result.id };
-      } else {
+      if (!response.ok) {
         return { success: false, message: result.error || 'Failed to create booking' };
       }
+      
+      const meetLink = await generateMeetLink({
+        clientName: data.name,
+        email: data.email,
+        date: data.date.split('T')[0],
+        time: data.time,
+        duration: data.duration || 45,
+        bookingType: data.bookingType || 'Discovery'
+      });
+      let meetLinkSaved = false;
+      if (meetLink && result.id) {
+        try {
+          await updateBookingWithMeetLink(parseInt(result.id), meetLink);
+          meetLinkSaved = true;
+        } catch (updateError) {
+          // console.error('Failed to update booking with Meet link:', updateError);
+        }
+      } else {
+        // console.warn('No Meet link generated for booking #' + result.id);
+      }
+
+      return { 
+        success: true, 
+        message: result.message || 'Booking confirmed!', 
+        bookingId: result.id,
+        meetLink: meetLink || undefined
+      };
+
     } catch (error) {
-      console.error('Error submitting booking:', error);
       return { success: false, message: 'Something went wrong. Please try again.' };
     } finally {
       setSubmitting(false);

@@ -6,12 +6,12 @@ export function Consequence() {
     <section className="rounded-[24px] overflow-hidden bg-[#f6f7f5] px-5 py-16 sm:px-10 lg:px-[50px]">
       <div className="mx-auto max-w-7xl">
         {/* Section Label */}
-        <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-[#4e7b64]">
+        <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-[#000000]">
           The Cost of Inaction
         </p>
 
         {/* Heading */}
-        <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#17362f] text-center sm:text-5xl mx-auto">
+        <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#001e61] text-center sm:text-5xl mx-auto">
           What's at stake?
         </h2>
 
@@ -24,7 +24,7 @@ export function Consequence() {
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f5e6e6]">
                 <XIcon size={16} className="text-[#a64444]" />
               </span>
-              <h3 className="text-lg font-semibold text-[#17362f]">Without fixing this</h3>
+              <h3 className="text-lg font-semibold text-[#0951f6]">Without fixing this</h3>
             </div>
             <ul className="mt-4 space-y-2.5">
               <li className="flex items-center gap-3 text-sm leading-relaxed text-[#4d6259] sm:text-base">
@@ -93,10 +93,10 @@ export function Consequence() {
           </div>
 
           {/* Column 3: With */}
-          <div className="rounded-[16px] bg-[#17362f] p-6 shadow-sm sm:p-8">
+          <div className="rounded-[16px] bg-[#0951f6] p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#cbe0d0]">
-                <CheckIcon size={16} className="text-[#17362f]" />
+                <CheckIcon size={16} className="text-[#0951f6]" />
               </span>
               <h3 className="text-lg font-semibold text-white">With fixing this</h3>
             </div>

@@ -1,9 +1,3 @@
-export type TimeSlot = {
-  id: string;
-  time: string;
-  available: boolean;
-};
-
 // types/booking.ts
 export interface BookingData {
   name: string;
@@ -15,10 +9,18 @@ export interface BookingData {
   duration?: number;
   bookingType?: string;
   status: string;
+  meetLink?: string;
 }
 
 export type BookingResponse = {
   success: boolean;
   message: string;
   bookingId?: string;
+  meetLink?: string;
+};
+
+export type TimeSlot = {
+  id: string;
+  time: string;
+  available: boolean;
 };

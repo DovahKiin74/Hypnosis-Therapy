@@ -62,12 +62,12 @@ export function Services() {
     >
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
             What we solve
           </p>
           <h2
             id="services-heading"
-            className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-5xl"
+            className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#001e61] sm:text-5xl"
           >
             The real problems behind the pressure.
           </h2>
@@ -95,12 +95,12 @@ export function Services() {
             
             {/* Pain Points */}
             <div className="mt-4 space-y-1.5 border-t border-[#d4e0da] pt-4">
-              <p className="text-xs font-bold uppercase tracking-[0.1em] text-[#4e7b64]">
+              <p className="text-xs font-bold uppercase tracking-[0.1em] text-[#000000]">
                 We solve:
               </p>
               {painPoints.map((point) => (
                 <p key={point} className="text-sm text-[#4a5a52] flex items-start gap-2">
-                  <span className="text-[#4e7b64] mt-0.5">•</span>
+                  <span className="text-[#000000] mt-0.5">•</span>
                   {point}
                 </p>
               ))}

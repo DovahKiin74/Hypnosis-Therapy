@@ -182,17 +182,17 @@ export function FaqsPage() {
   });
 
   return (
-    <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
+    <main className="w-full bg-[#f6f7f5] text-[#0951f6] px-[16px] py-[16px]">
       <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
         
         {/* Hero Section - Smexy */}
-        <section className="overflow-hidden rounded-[24px] bg-[#17362f] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 relative">
+        <section className="overflow-hidden rounded-[24px] bg-[#0951f6] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 relative">
           {/* Decorative elements */}
-          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-[#4e7b64]/10"></div>
-          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#4e7b64]/10"></div>
+          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-[#000]/10"></div>
+          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#000]/10"></div>
           
           <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#4e7b64]/20 text-[#d7e9dc]">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#000]/20 text-[#d7e9dc]">
               <HelpCircleIcon size={28} />
             </div>
             <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-[#d7e9dc]">
@@ -208,7 +208,7 @@ export function FaqsPage() {
             
             {/* Search Bar */}
             <div className="mx-auto mt-8 max-w-xl">
-              <div className="flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 focus-within:ring-2 focus-within:ring-[#4e7b64] focus-within:border-transparent transition-all">
+              <div className="flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 focus-within:ring-2 focus-within:ring-[#000] focus-within:border-transparent transition-all">
                 <SearchIcon size={18} className="text-white/50" />
                 <input
                   type="text"
@@ -228,7 +228,7 @@ export function FaqsPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
                     selectedCategory === category
-                      ? 'bg-[#4e7b64] text-white'
+                      ? 'bg-[#000] text-white'
                       : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
                   }`}
                 >
@@ -243,10 +243,10 @@ export function FaqsPage() {
         <section className="overflow-hidden rounded-[24px] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
           <div className="mx-auto max-w-4xl">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
                 {filteredFAQs.length} Questions
               </p>
-              <h2 className="font-display mt-2 text-2xl font-semibold text-[#17362f] sm:text-3xl">
+              <h2 className="font-display mt-2 text-2xl font-semibold text-[#001e61] sm:text-3xl">
                 Everything You Want to Know
               </h2>
             </div>
@@ -261,14 +261,14 @@ export function FaqsPage() {
                   <div key={index} className="py-4">
                     <button
                       onClick={() => toggleFAQ(index)}
-                      className="flex w-full items-start justify-between gap-4 text-left hover:text-[#4e7b64] transition-colors"
+                      className="flex w-full items-start justify-between gap-4 text-left hover:text-[#000000] transition-colors"
                     >
                       <div>
-                        <span className="text-xs font-medium text-[#4e7b64] uppercase tracking-[0.08em]">
+                        <span className="text-xs font-medium text-[#000000] uppercase tracking-[0.08em]">
                           {faq.category}
                         </span>
                         <h3 className={`font-display mt-1 text-base font-semibold ${
-                          openIndex === index ? 'text-[#4e7b64]' : 'text-[#17362f]'
+                          openIndex === index ? 'text-[#000000]' : 'text-[#001e61]'
                         }`}>
                           {faq.question}
                         </h3>
@@ -314,10 +314,10 @@ export function FaqsPage() {
           <section className="overflow-hidden rounded-[24px] bg-[#eef3f0] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
             <div className="mx-auto max-w-2xl">
               <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#4e7b64]/10 text-[#4e7b64]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#000]/10 text-[#000000]">
                   <MailIcon size={24} />
                 </div>
-                <h2 className="font-display mt-4 text-2xl font-semibold text-[#17362f] sm:text-3xl">
+                <h2 className="font-display mt-4 text-2xl font-semibold text-[#0951f6] sm:text-3xl">
                   Ask Your Question
                 </h2>
                 <p className="mt-2 text-sm text-[#4d6259]">
@@ -330,7 +330,7 @@ export function FaqsPage() {
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#cbe0d0] text-[#275b43]">
                     <CheckIcon size={24} />
                   </div>
-                  <h3 className="font-display mt-4 text-xl font-semibold text-[#17362f]">
+                  <h3 className="font-display mt-4 text-xl font-semibold text-[#0951f6]">
                     Question Sent!
                   </h3>
                   <p className="mt-2 text-sm text-[#4d6259]">
@@ -338,7 +338,7 @@ export function FaqsPage() {
                   </p>
                   <button
                     onClick={() => setFormSubmitted(false)}
-                    className="mt-4 text-sm font-medium text-[#4e7b64] hover:underline"
+                    className="mt-4 text-sm font-medium text-[#000000] hover:underline"
                   >
                     Ask Another Question
                   </button>
@@ -352,7 +352,7 @@ export function FaqsPage() {
                   }}
                 >
                   <div>
-                    <label htmlFor="faq-name" className="block text-sm font-medium text-[#17362f] mb-1.5">
+                    <label htmlFor="faq-name" className="block text-sm font-medium text-[#0951f6] mb-1.5">
                       Your Name
                     </label>
                     <div className="relative">
@@ -362,13 +362,13 @@ export function FaqsPage() {
                         type="text"
                         placeholder="Enter your name"
                         required
-                        className="w-full rounded-full border border-[#dce6e0] bg-white px-11 py-3.5 text-sm text-[#17362f] placeholder:text-[#89978f] focus:border-[#4e7b64] focus:outline-none focus:ring-2 focus:ring-[#4e7b64]/20"
+                        className="w-full rounded-full border border-[#dce6e0] bg-white px-11 py-3.5 text-sm text-[#0951f6] placeholder:text-[#89978f] focus:border-[#000] focus:outline-none focus:ring-2 focus:ring-[#000]/20"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="faq-email" className="block text-sm font-medium text-[#17362f] mb-1.5">
+                    <label htmlFor="faq-email" className="block text-sm font-medium text-[#0951f6] mb-1.5">
                       Email Address
                     </label>
                     <div className="relative">
@@ -378,13 +378,13 @@ export function FaqsPage() {
                         type="email"
                         placeholder="Enter your email"
                         required
-                        className="w-full rounded-full border border-[#dce6e0] bg-white px-11 py-3.5 text-sm text-[#17362f] placeholder:text-[#89978f] focus:border-[#4e7b64] focus:outline-none focus:ring-2 focus:ring-[#4e7b64]/20"
+                        className="w-full rounded-full border border-[#dce6e0] bg-white px-11 py-3.5 text-sm text-[#0951f6] placeholder:text-[#89978f] focus:border-[#000] focus:outline-none focus:ring-2 focus:ring-[#000]/20"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="faq-question" className="block text-sm font-medium text-[#17362f] mb-1.5">
+                    <label htmlFor="faq-question" className="block text-sm font-medium text-[#0951f6] mb-1.5">
                       Your Question
                     </label>
                     <div className="relative">
@@ -394,7 +394,7 @@ export function FaqsPage() {
                         placeholder="Type your question here..."
                         required
                         rows={4}
-                        className="w-full rounded-[20px] border border-[#dce6e0] bg-white px-11 py-3.5 text-sm text-[#17362f] placeholder:text-[#89978f] focus:border-[#4e7b64] focus:outline-none focus:ring-2 focus:ring-[#4e7b64]/20 resize-none"
+                        className="w-full rounded-[20px] border border-[#dce6e0] bg-white px-11 py-3.5 text-sm text-[#0951f6] placeholder:text-[#89978f] focus:border-[#000] focus:outline-none focus:ring-2 focus:ring-[#000]/20 resize-none"
                       />
                     </div>
                   </div>

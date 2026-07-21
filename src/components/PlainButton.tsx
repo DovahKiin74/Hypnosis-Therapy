@@ -14,7 +14,7 @@ export function PlainButton({
   className = ''
 }: PlainButtonProps) {
   
-  const baseStyles = 'group relative inline-flex items-center gap-2 text-sm font-medium text-[#17362f] hover:text-[#17362f] transition-colors duration-300 cursor-pointer no-underline';
+  const baseStyles = 'group relative inline-flex items-center gap-2 text-sm font-medium text-[#0951f6] hover:text-[#0951f6] transition-colors duration-300 cursor-pointer no-underline';
 
   const content = (
     <>
@@ -23,7 +23,7 @@ export function PlainButton({
         {children}
         {/* Underline line */}
         <span 
-          className="absolute left-0 -bottom-1 h-[2px] bg-[#17362f] transition-all duration-300 ease-out"
+          className="absolute left-0 -bottom-1 h-[2px] bg-[#0951f6] transition-all duration-300 ease-out"
           style={{
             width: '0%',
           }}
@@ -84,7 +84,7 @@ export function PlainButton({
         {children}
         {/* Underline line */}
         <span 
-          className="underline-line absolute left-0 -bottom-1 h-[2px] bg-[#17362f] transition-all duration-300 ease-out"
+          className="underline-line absolute left-0 -bottom-1 h-[2px] bg-[#0951f6] transition-all duration-300 ease-out"
           style={{
             width: '0%',
           }}

@@ -116,10 +116,10 @@ export function BlogDetailPage() {
 
   if (loading) {
     return (
-      <main className="w-full bg-[#f6f7f5] px-4 py-4 text-[#17362f] sm:px-6 sm:py-6 lg:px-[50px] lg:py-[50px]">
+      <main className="w-full bg-[#f6f7f5] px-4 py-4 text-[#001e61] sm:px-6 sm:py-6 lg:px-[50px] lg:py-[50px]">
         <div className="mx-auto max-w-[1440px]">
           <div className="rounded-[24px] bg-white px-5 py-20 text-center">
-            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[#4e7b64] border-t-transparent"></div>
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[#000] border-t-transparent"></div>
             <p className="mt-4 text-[#718078]">Loading article...</p>
           </div>
         </div>
@@ -129,12 +129,12 @@ export function BlogDetailPage() {
 
   if (!post) {
     return (
-      <main className="w-full bg-[#f6f7f5] px-4 py-4 text-[#17362f] sm:px-6 sm:py-6 lg:px-[50px] lg:py-[50px]">
+      <main className="w-full bg-[#f6f7f5] px-4 py-4 text-[#001e61] sm:px-6 sm:py-6 lg:px-[50px] lg:py-[50px]">
         <div className="mx-auto max-w-[1440px]">
           <div className="rounded-[24px] bg-white px-5 py-20 text-center">
-            <h2 className="font-display text-2xl font-semibold text-[#17362f]">Article Not Found</h2>
+            <h2 className="font-display text-2xl font-semibold text-[#001e61]">Article Not Found</h2>
             <p className="mt-2 text-[#718078]">The article you're looking for doesn't exist.</p>
-            <Link to="/blogs" className="mt-4 inline-block text-[#4e7b64] hover:underline">
+            <Link to="/blogs" className="mt-4 inline-block text-[#000000] hover:underline">
               ← Back to Blogs
             </Link>
           </div>
@@ -144,7 +144,7 @@ export function BlogDetailPage() {
   }
 
   return (
-    <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
+    <main className="w-full bg-[#f6f7f5] text-[#001e61] px-[16px] py-[16px]">
       <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
         {/* THUMBNAIL IMAGE */}
         {post.image && (
@@ -163,7 +163,7 @@ export function BlogDetailPage() {
           {headings.length > 0 && (
             <button
               onClick={() => setMobileTocOpen(!mobileTocOpen)}
-              className="sm:hidden fixed bottom-6 right-6 z-50 rounded-full bg-[#4e7b64] p-3 text-white shadow-lg hover:bg-[#3a624f] transition-colors"
+              className="sm:hidden fixed bottom-6 right-6 z-50 rounded-full bg-[#000] p-3 text-white shadow-lg hover:bg-[#3a624f] transition-colors"
             >
               {mobileTocOpen ? <XIcon size={20} /> : <MenuIcon size={20} />}
             </button>
@@ -173,7 +173,7 @@ export function BlogDetailPage() {
           {headings.length > 0 && (
             <aside className="hidden lg:block w-48 md:w-64 shrink-0">
               <div className="sticky top-32">
-                <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#4e7b64] mb-4">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#000000] mb-4">
                   On this page
                 </p>
                 <nav className="space-y-2">
@@ -183,8 +183,8 @@ export function BlogDetailPage() {
                       onClick={() => scrollToHeading(heading.id)}
                       className={`block text-sm transition-all duration-200 text-left w-full ${
                         activeHeading === heading.id
-                          ? 'text-[#4e7b64] font-semibold pl-3 border-l-2 border-[#4e7b64]'
-                          : 'text-[#718078] hover:text-[#17362f] pl-3 border-l-2 border-transparent hover:border-[#d0dcd4]'
+                          ? 'text-[#000000] font-semibold pl-3 border-l-2 border-[#000]'
+                          : 'text-[#718078] hover:text-[#001e61] pl-3 border-l-2 border-transparent hover:border-[#d0dcd4]'
                       }`}
                     >
                       {heading.text}
@@ -199,7 +199,7 @@ export function BlogDetailPage() {
           {mobileTocOpen && headings.length > 0 && (
             <div className="sm:hidden fixed inset-0 z-40 bg-black/50" onClick={() => setMobileTocOpen(false)}>
               <div className="absolute bottom-24 left-4 right-4 bg-white rounded-[20px] p-6 shadow-xl max-h-[60vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-                <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#4e7b64] mb-4">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#000000] mb-4">
                   On this page
                 </p>
                 <nav className="space-y-3">
@@ -209,8 +209,8 @@ export function BlogDetailPage() {
                       onClick={() => scrollToHeading(heading.id)}
                       className={`block text-sm transition-all duration-200 text-left w-full ${
                         activeHeading === heading.id
-                          ? 'text-[#4e7b64] font-semibold'
-                          : 'text-[#718078] hover:text-[#17362f]'
+                          ? 'text-[#000000] font-semibold'
+                          : 'text-[#718078] hover:text-[#001e61]'
                       }`}
                     >
                       {heading.text}
@@ -226,7 +226,7 @@ export function BlogDetailPage() {
             <div className="mx-auto max-w-3xl">
               {/* Category and Date */}
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs font-medium text-[#4e7b64] uppercase tracking-[0.08em]">
+                <span className="text-xs font-medium text-[#000000] uppercase tracking-[0.08em]">
                   {post.category}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-[#d0dcd4]"></span>
@@ -234,17 +234,17 @@ export function BlogDetailPage() {
               </div>
 
               {/* Title */}
-              <h1 className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-4xl lg:text-5xl">
+              <h1 className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#001e61] sm:text-4xl lg:text-5xl">
                 {post.title}
               </h1>
 
               {/* Author info under title */}
               <div className="flex items-center gap-3 mt-4">
-                <div className="h-10 w-10 rounded-full bg-[#4e7b64] flex items-center justify-center text-white text-sm font-bold shrink-0">
+                <div className="h-10 w-10 rounded-full bg-[#000] flex items-center justify-center text-white text-sm font-bold shrink-0">
                   {post.author.charAt(0)}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[#17362f]">{post.author}</p>
+                  <p className="text-sm font-medium text-[#001e61]">{post.author}</p>
                   <p className="text-xs text-[#718078]">{post.readTime}</p>
                 </div>
               </div>
@@ -259,11 +259,11 @@ export function BlogDetailPage() {
               {/* AUTHOR SECTION AT BOTTOM */}
               <div className="mt-12 rounded-[20px] bg-[#eef3f0] p-6 sm:p-8">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-                  <div className="h-16 w-16 rounded-full bg-[#4e7b64] flex items-center justify-center text-white text-2xl font-bold shrink-0">
+                  <div className="h-16 w-16 rounded-full bg-[#000] flex items-center justify-center text-white text-2xl font-bold shrink-0">
                     {post.author.charAt(0)}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-display text-lg font-semibold text-[#17362f]">
+                    <h3 className="font-display text-lg font-semibold text-[#001e61]">
                       {post.author}
                     </h3>
                     {post.authorBio && (
@@ -274,14 +274,14 @@ export function BlogDetailPage() {
                         href="https://linkedin.com/in/marksiegel" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-[#4e7b64] hover:text-[#3a624f] transition-colors"
+                        className="inline-flex items-center gap-2 text-sm text-[#000000] hover:text-[#3a624f] transition-colors"
                       >
                         <LinkedinIcon size={16} />
                         Follow on LinkedIn
                       </a>
                       <a 
                         href="/contact" 
-                        className="inline-flex items-center gap-2 text-sm text-[#4e7b64] hover:text-[#3a624f] transition-colors"
+                        className="inline-flex items-center gap-2 text-sm text-[#000000] hover:text-[#3a624f] transition-colors"
                       >
                         <MailIcon size={16} />
                         Contact
@@ -298,10 +298,10 @@ export function BlogDetailPage() {
             <div className="sticky top-32 space-y-6">
               {/* Follow on LinkedIn */}
               <div className="rounded-[20px] bg-white p-6 text-center border border-[#e8edea]">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#eef3f0] text-[#4e7b64]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#eef3f0] text-[#000000]">
                   <LinkedinIcon size={24} />
                 </div>
-                <h3 className="font-display mt-3 text-sm font-semibold text-[#17362f]">
+                <h3 className="font-display mt-3 text-sm font-semibold text-[#001e61]">
                   Follow Mark on LinkedIn
                 </h3>
                 <p className="mt-1 text-xs text-[#718078]">
@@ -311,7 +311,7 @@ export function BlogDetailPage() {
                   href="https://linkedin.com/in/marksiegel" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#4e7b64] px-4 py-2 text-xs font-bold text-white hover:bg-[#3a624f] transition-colors"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#000] px-4 py-2 text-xs font-bold text-white hover:bg-[#3a624f] transition-colors"
                 >
                   <LinkedinIcon size={14} />
                   Follow
@@ -319,8 +319,8 @@ export function BlogDetailPage() {
               </div>
 
               {/* CTA */}
-              <div className="rounded-[20px] bg-[#17362f] p-6 text-center border border-[#17362f]">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#4e7b64]/20 text-[#d7e9dc]">
+              <div className="rounded-[20px] bg-[#001e61] p-6 text-center border border-[#001e61]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#000]/20 text-[#d7e9dc]">
                   <SparklesIcon size={24} />
                 </div>
                 <h3 className="font-display mt-3 text-sm font-semibold text-white">
@@ -331,7 +331,7 @@ export function BlogDetailPage() {
                 </p>
                 <a 
                   href="/contact" 
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#4e7b64] px-4 py-2 text-xs font-bold text-white hover:bg-[#3a624f] transition-colors"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#000] px-4 py-2 text-xs font-bold text-white hover:bg-[#3a624f] transition-colors"
                 >
                   Book Your Free Call
                   <ArrowRightIcon size={12} />
@@ -347,10 +347,10 @@ export function BlogDetailPage() {
             <div className="mx-auto max-w-6xl">
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
                     Recent Articles
                   </p>
-                  <h2 className="font-display mt-1 text-2xl font-semibold text-[#17362f] sm:text-3xl">
+                  <h2 className="font-display mt-1 text-2xl font-semibold text-[#001e61] sm:text-3xl">
                     Continue Reading
                   </h2>
                 </div>
@@ -379,7 +379,7 @@ export function BlogDetailPage() {
           font-weight: 700;
           margin-top: 2.5rem;
           margin-bottom: 1rem;
-          color: #17362f;
+          color: #001e61;
           line-height: 1.3;
           scroll-margin-top: 80px;
         }
@@ -389,7 +389,7 @@ export function BlogDetailPage() {
           font-weight: 600;
           margin-top: 1.5rem;
           margin-bottom: 0.75rem;
-          color: #17362f;
+          color: #001e61;
         }
 
         .blog-content p {
@@ -401,7 +401,7 @@ export function BlogDetailPage() {
 
         .blog-content strong {
           font-weight: 700;
-          color: #17362f;
+          color: #001e61;
         }
 
         .blog-content ul {
@@ -431,15 +431,15 @@ export function BlogDetailPage() {
         }
 
         .blog-content blockquote {
-          border-left: 4px solid #4e7b64;
+          border-left: 4px solid #000;
           padding-left: 1.5rem;
           margin: 1.5rem 0;
           font-style: italic;
-          color: #17362f;
+          color: #001e61;
         }
 
         .blog-content a {
-          color: #4e7b64;
+          color: #000;
           text-decoration: underline;
         }
 

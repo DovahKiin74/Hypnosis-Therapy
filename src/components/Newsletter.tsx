@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle2Icon, MailIcon, ArrowRightIcon } from 'lucide-react';
 
-const API_URL = 'https://springgreen-mouse-511725.hostingersite.com';
+const API_URL = 'https://purposedrivenhero.com/';
 
 export function Newsletter() {
   const [email, setEmail] = useState('');
@@ -35,7 +35,6 @@ export function Newsletter() {
         setError(data.error || 'Something went wrong. Please try again.');
       }
     } catch (err) {
-      console.error('Error:', err);
       setError('Unable to sign up. Please try again later.');
     } finally {
       setLoading(false);
@@ -48,7 +47,7 @@ export function Newsletter() {
       className="rounded-[24px] px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20 relative overflow-hidden"
       aria-labelledby="newsletter-heading"
       style={{
-        backgroundImage: `radial-gradient(circle, #4e7b64 1.5px, transparent 1.5px)`,
+        backgroundImage: `radial-gradient(circle, #000 1.5px, transparent 1.5px)`,
         backgroundSize: '24px 24px',
         backgroundColor: '#eef3f0',
       }}
@@ -56,12 +55,12 @@ export function Newsletter() {
       <div className="absolute inset-0 bg-[#eef3f0]/60"></div>
 
       <div className="relative z-10 mx-auto max-w-3xl text-center">
-        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#4e7b64]/10 text-[#4e7b64]">
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#000]/10 text-[#000000]">
           <MailIcon size={22} />
         </span>
         <h2
           id="newsletter-heading"
-          className="font-display mt-5 text-3xl font-semibold tracking-[-0.045em] text-[#17362f] sm:text-4xl lg:text-5xl"
+          className="font-display mt-5 text-3xl font-semibold tracking-[-0.045em] text-[#001e61] sm:text-4xl lg:text-5xl"
         >
           Let's Find Your Constraint.
         </h2>
@@ -76,7 +75,7 @@ export function Newsletter() {
           onSubmit={handleSubmit}
           noValidate
         >
-          <div className="flex items-center gap-2 rounded-full bg-white p-1 shadow-sm focus-within:ring-2 focus-within:ring-[#4e7b64] focus-within:ring-offset-2">
+          <div className="flex items-center gap-2 rounded-full bg-white p-1 shadow-sm focus-within:ring-2 focus-within:ring-[#000] focus-within:ring-offset-2">
             <label className="sr-only" htmlFor="newsletter-email">
               Email address
             </label>
@@ -88,7 +87,7 @@ export function Newsletter() {
               }}
               type="email"
               placeholder="Enter your email"
-              className="flex-1 rounded-full border-0 bg-transparent px-5 py-3 text-sm text-[#17362f] placeholder:text-[#89978f] focus:outline-none focus:ring-0"
+              className="flex-1 rounded-full border-0 bg-transparent px-5 py-3 text-sm text-[#0951f6] placeholder:text-[#89978f] focus:outline-none focus:ring-0"
               aria-describedby={
                 error ? 'newsletter-error' : 'newsletter-help'
               }
@@ -97,7 +96,7 @@ export function Newsletter() {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center gap-2 rounded-full bg-[#17362f] px-5 py-3 text-sm font-bold text-white transition-all hover:bg-black focus:outline-none focus:ring-2 focus:ring-[#4e7b64] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 rounded-full bg-[#0951f6] px-5 py-3 text-sm font-bold text-white transition-all hover:bg-black focus:outline-none focus:ring-2 focus:ring-[#000] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Subscribing...' : 'Subscribe'}
               <ArrowRightIcon size={16} />

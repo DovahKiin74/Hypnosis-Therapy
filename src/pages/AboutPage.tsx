@@ -42,7 +42,7 @@ const differentiators = [
 
 export function AboutPage() {
   return (
-    <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
+    <main className="w-full bg-[#f6f7f5] text-[#0951f6] px-[16px] py-[16px]">
       <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
         
         {/* Hero Section - Image Right, Content Left */}
@@ -50,35 +50,35 @@ export function AboutPage() {
           <div className="flex flex-col gap-10 lg:flex-row lg:items-center">
             {/* Left - Content */}
             <div className="lg:w-1/2">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
                 About Mark Siegel
               </p>
-              <h1 className="font-display mt-4 text-4xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-5xl lg:text-6xl">
+              <h1 className="font-display mt-4 text-4xl font-semibold tracking-[-0.04em] text-[#0951f6] sm:text-5xl lg:text-6xl">
                 Your Personal Mind Trainer
               </h1>
               <p className="mt-5 text-base leading-relaxed text-[#4d6259] sm:text-lg">
-                With over <span className="font-bold text-[#17362f]">29 years</span> of experience as a
+                With over <span className="font-bold text-[#001e61]">29 years</span> of experience as a
                 Professional Hypnotherapist, Master Practitioner, and Trainer of
-                NLP, I've helped <span className="font-bold text-[#17362f]">399+</span> business owners
+                NLP, I've helped <span className="font-bold text-[#001e61]">399+</span> business owners
                 break through mental barriers and build businesses they truly love.
               </p>
               
               {/* Stats */}
               <div className="mt-6 grid grid-cols-3 gap-4 border-t border-b border-[#e8edea] py-5">
                 <div>
-                  <p className="font-display text-2xl font-bold text-[#17362f] sm:text-3xl">
+                  <p className="font-display text-2xl font-bold text-[#001e61] sm:text-3xl">
                     399+
                   </p>
                   <p className="text-xs text-[#718078] sm:text-sm">Clients Supported</p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-[#17362f] sm:text-3xl">
+                  <p className="font-display text-2xl font-bold text-[#001e61] sm:text-3xl">
                     29+
                   </p>
                   <p className="text-xs text-[#718078] sm:text-sm">Years Experience</p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-[#17362f] sm:text-3xl">
+                  <p className="font-display text-2xl font-bold text-[#001e61] sm:text-3xl">
                     87%
                   </p>
                   <p className="text-xs text-[#718078] sm:text-sm">Report Change</p>
@@ -92,7 +92,7 @@ export function AboutPage() {
                     <CheckIcon size={13} strokeWidth={3} />
                   </span>
                   <p className="text-sm text-[#4d6259]">
-                    <span className="font-medium text-[#17362f]">NLP Master Practitioner</span> — Certified Trainer
+                    <span className="font-medium text-[#001e61]">NLP Master Practitioner</span> — Certified Trainer
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -100,7 +100,7 @@ export function AboutPage() {
                     <CheckIcon size={13} strokeWidth={3} />
                   </span>
                   <p className="text-sm text-[#4d6259]">
-                    <span className="font-medium text-[#17362f]">Clinical Hypnotherapist</span> — 29+ Years
+                    <span className="font-medium text-[#001e61]">Clinical Hypnotherapist</span> — 29+ Years
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export function AboutPage() {
                     <CheckIcon size={13} strokeWidth={3} />
                   </span>
                   <p className="text-sm text-[#4d6259]">
-                    <span className="font-medium text-[#17362f]">Business Mindset Coach</span> — SMB Specialist
+                    <span className="font-medium text-[#001e61]">Business Mindset Coach</span> — SMB Specialist
                   </p>
                 </div>
               </div>
@@ -133,8 +133,8 @@ export function AboutPage() {
                   className="h-full w-full object-cover"
                   style={{ maxHeight: '550px', minHeight: '400px' }}
                 />
-                <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-full bg-[#4e7b64]/10"></div>
-                <div className="absolute -top-4 -left-4 h-16 w-16 rounded-full bg-[#4e7b64]/10"></div>
+                <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-full bg-[#000]/10"></div>
+                <div className="absolute -top-4 -left-4 h-16 w-16 rounded-full bg-[#000]/10"></div>
               </div>
             </div>
           </div>
@@ -145,10 +145,10 @@ export function AboutPage() {
         <div className="rounded-[24px] overflow-hidden">
           <section className="rounded-[24px] overflow-hidden px-5 py-14 sm:px-10 sm:py-16 lg:px-[50px] lg:py-20">
             <div className="mx-auto max-w-4xl text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
                 What Makes Me Different
               </p>
-              <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-4xl lg:text-5xl">
+              <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#001e61] sm:text-4xl lg:text-5xl">
                 I Don't Just Talk — I Transform
               </h2>
               <p className="mt-3 text-base leading-relaxed text-[#4d6259] sm:text-base max-w-2xl mx-auto">
@@ -162,17 +162,17 @@ export function AboutPage() {
               {differentiators.map((item) => (
                 <div
                   key={item.title}
-                  className="relative rounded-[20px] overflow-hidden flex flex-col border border-[#397366]"
+                  className="relative rounded-[20px] overflow-hidden flex flex-col border border-[#283867]"
                 >
                   {/* Content Div */}
                   <div className="relative z-10 flex flex-col items-center px-6 py-12 flex-1 rounded-[16px] overflow-hidden">
                     {/* Icon */}
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#C5C5C5] text-[#17362F] relative z-10">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#C5C5C5] text-[#001e61] relative z-10">
                       <item.icon size={24} />
                     </div>
                     
                     {/* Title */}
-                    <h3 className="font-display mt-4 text-base font-semibold text-[#17362f] relative z-10">
+                    <h3 className="font-display mt-4 text-base font-semibold text-[#001e61] relative z-10">
                       {item.title}
                     </h3>
                     

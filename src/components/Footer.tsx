@@ -2,11 +2,7 @@ import {
   MailIcon, 
   PhoneIcon, 
   MapPinIcon, 
-  LinkedinIcon, 
-  InstagramIcon, 
-  YoutubeIcon, 
-  FacebookIcon,
-  ArrowRightIcon
+  LinkedinIcon
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { WhitePlainButton } from './WhitePlainButton';
@@ -21,35 +17,17 @@ const navigationItems = [
 
 export function Footer() {
   return (
-    <footer className="rounded-[24px] bg-[#111B21] px-6 py-12 text-white sm:px-10 lg:px-[50px]">
+    <footer className="rounded-[24px] bg-[#00164a] px-6 py-12 text-white sm:px-10 lg:px-[50px]">
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div>
           <p className="font-display text-xl font-bold tracking-tight">
-            MARK <span className="font-normal text-[#c2dfca]">SIEGEL</span>
+            Mark <span className="font-normal text-[#fff]">Siegel</span>
           </p>
           <p className="mt-3 text-sm leading-relaxed text-white/60 max-w-xs">
-            Personal Mind Trainer — Helping leaders think clearly and lead calmly.
+            Personal Mind Trainer. Helping leaders think clearly and lead calmly.
           </p>
           <div className="mt-4 flex gap-3">
-            <a
-              href="https://facebook.com/marksiegel"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="text-white/40 hover:text-white transition-colors"
-            >
-              <FacebookIcon size={18} />
-            </a>
-            <a
-              href="https://instagram.com/marksiegel"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="text-white/40 hover:text-white transition-colors"
-            >
-              <InstagramIcon size={18} />
-            </a>
             <a
               href="https://linkedin.com/in/marksiegel"
               target="_blank"
@@ -58,15 +36,6 @@ export function Footer() {
               className="text-white/40 hover:text-white transition-colors"
             >
               <LinkedinIcon size={18} />
-            </a>
-            <a
-              href="https://youtube.com/marksiegel"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-              className="text-white/40 hover:text-white transition-colors"
-            >
-              <YoutubeIcon size={18} />
             </a>
           </div>
         </div>
@@ -95,14 +64,14 @@ export function Footer() {
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-3 text-white/60">
               <PhoneIcon size={16} className="shrink-0 mt-0.5 text-white/30" />
-              <a href="tel:+1234567890" className="hover:text-white transition-colors">
-                (123) 456-7890
+              <a href="tel:+1877-501-1406" className="hover:text-white transition-colors">
+                1877-501-1406
               </a>
             </li>
             <li className="flex items-start gap-3 text-white/60">
               <MailIcon size={16} className="shrink-0 mt-0.5 text-white/30" />
-              <a href="mailto:mark@example.com" className="hover:text-white transition-colors">
-                mark@example.com
+              <a href="mailto:BusinessCoachingStrategies@gmail.com" className="hover:text-white transition-colors">
+                BusinessCoachingStrategies@gmail.com
               </a>
             </li>
             <li className="flex items-start gap-3 text-white/60">

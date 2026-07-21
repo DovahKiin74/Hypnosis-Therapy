@@ -402,6 +402,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'motivation-is-a-terrible-business-strategy',
     title: 'Motivation Is a Terrible Business Strategy',
     excerpt: 'Why the Most Successful Leaders Stop Waiting to Feel Ready',
+    image: '/blogs/Clarity-1.png',
     content: `
       <p>Most people give motivation far too much authority.</p>
       <p>They wait for it.</p>
@@ -595,6 +596,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'speed-wins-more-than-perfection',
     title: 'Speed Wins More Than Perfection',
     excerpt: 'Why Great Leaders Stop Overthinking and Start Trusting Their Own Decision Process',
+    image: '/blogs/Clarity-3.png',
     content: `
       <p>Most business leaders don't have a decision problem.</p>
       <p>They have a trust problem.</p>
@@ -762,6 +764,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'fear-has-terrible-navigation-skills',
     title: 'Fear Has Terrible Navigation Skills',
     excerpt: 'Why Great Leaders Feel Fear and Move Anyway',
+    image: '/blogs/Clarity-4.png',
     content: `
       <p>Most people think successful leaders are fearless.</p>
       <p>They're not.</p>
@@ -973,6 +976,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'the-decision-that-lasts-is-the-decision-that-aligns',
     title: 'The Decision That Lasts Is the Decision That Aligns',
     excerpt: 'Why Values Create Better Decisions Than Emotions Ever Will',
+    image: '/blogs/Clarity-6.png',
     content: `
       <p>Every leader has experienced it.</p>
       <p>A decision felt right in the moment.</p>
@@ -1141,6 +1145,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'the-hidden-cost-of-success',
     title: 'The Hidden Cost of Success',
     excerpt: 'Why Great Leaders Run Out of Time Long Before They Run Out of Opportunity',
+    image: '/blogs/Clarity-5.png',
     content: `
       <p>Every entrepreneur eventually says the same thing.</p>
       <p>"I need more time."</p>
@@ -1358,6 +1363,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'the-leader-who-cant-delegate-is-following-the-wrong-compass',
     title: 'The Leader Who Can\'t Delegate Is Following the Wrong Compass',
     excerpt: 'The Hidden Limit to Growth Isn\'t Capacity. It\'s Trust.',
+    image: '/blogs/Clarity-7.png',
     content: `
       <p>The entrepreneur was exhausted.</p>
       <p>The business was growing.</p>
@@ -1537,6 +1543,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'the-most-dangerous-thing-about-success',
     title: 'The Most Dangerous Thing About Success',
     excerpt: 'Why Great Leaders Often Miss the Problems That Matter Most',
+    image: '/blogs/Clarity-2.png',
     content: `
       <p>Success can be deceptive.</p>
       <p>Failure gets your attention immediately.</p>
@@ -1729,6 +1736,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'the-most-valuable-person-in-the-room-might-be-the-one-who-disagrees',
     title: 'The Most Valuable Person in the Room Might Be the One Who Disagrees',
     excerpt: 'Why Great Leaders Learn to Listen to the Critic, Not Just the Cheerleader',
+    image: '/blogs/Clarity-8.png',
     content: `
       <p>Entrepreneurs are natural optimists.</p>
       <p>They have to be.</p>

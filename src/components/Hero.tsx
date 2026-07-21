@@ -10,13 +10,13 @@ export function Hero() {
             
             {/* Left: Heading */}
             <div className="max-w-3xl">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#4e7b64]">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#000000]">
                 For Business Owners Who Know They're Capable of More
               </p>
               
               <h1
                 id="hero-heading"
-                className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-[#17362f] sm:text-5xl lg:text-6xl"
+                className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-[#0951f6] sm:text-5xl lg:text-6xl"
               >
                 You Don't Have a Business Ceiling.
                 You Have a Decision Constraint.

@@ -8,6 +8,7 @@ import { FaqsPage } from './pages/FaqsPage';
 import { Home } from './pages/Home';
 import { HowItWorksPage } from './pages/HowItWorksPage';
 import { ScrollToTop } from './components/ScrollToTop';
+import { CircleOfExcellencePage } from './pages/CircleOfExcellencePage';
 
 export function App() {
   return (
@@ -23,6 +24,7 @@ export function App() {
         <Route path="/blog/:slug" element={<BlogDetailPage />} />
         <Route path="/faqs" element={<FaqsPage />} />
         <Route path="*" element={<Home />} />
+        <Route path="/circle-of-excellence" element={<CircleOfExcellencePage />} />
       </Routes>
     </BrowserRouter>
   );

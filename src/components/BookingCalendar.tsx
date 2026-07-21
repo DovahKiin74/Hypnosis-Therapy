@@ -127,8 +127,8 @@ export function BookingCalendar({
                   aspect-square w-full rounded-full text-sm font-medium transition-all duration-200 text-center
                   ${!isCurrentMonth ? 'text-stone-200 cursor-not-allowed' : ''}
                   ${isPastDate && isCurrentMonth ? 'text-stone-300 cursor-not-allowed' : ''}
-                  ${isSelected ? 'bg-[#17362f] text-white shadow-sm' : ''}
-                  ${isTodayDate && !isSelected ? 'border-2 border-[#4e7b64] text-[#17362f]' : ''}
+                  ${isSelected ? 'bg-[#0951f6] text-white shadow-sm' : ''}
+                  ${isTodayDate && !isSelected ? 'border-2 border-[#000] text-[#0951f6]' : ''}
                   ${!isSelected && !isTodayDate && !isPastDate && isCurrentMonth ? 'hover:bg-stone-50 text-stone-700' : ''}
                 `}
               >
@@ -149,7 +149,7 @@ export function BookingCalendar({
 
             {loading ? (
               <div className="flex items-center justify-center py-6">
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-stone-200 border-t-[#4e7b64]" />
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-stone-200 border-t-[#000]" />
               </div>
             ) : timeSlots.length === 0 ? (
               <div className="text-center py-6 text-sm text-stone-400">
@@ -175,7 +175,7 @@ export function BookingCalendar({
                             disabled={!slot.available}
                             className={`
                               px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200
-                              ${selectedTime === slot.time ? 'bg-[#17362f] text-white' : ''}
+                              ${selectedTime === slot.time ? 'bg-[#0951f6] text-white' : ''}
                               ${slot.available && selectedTime !== slot.time ? 'bg-stone-50 text-stone-700 hover:bg-stone-100' : ''}
                               ${!slot.available ? 'bg-stone-50/50 text-stone-300 cursor-not-allowed line-through' : ''}
                             `}
@@ -193,7 +193,7 @@ export function BookingCalendar({
             {/* Legend */}
             <div className="mt-4 flex items-center gap-3 text-[10px] text-stone-400">
               <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-[#17362f]" />
+                <span className="h-2 w-2 rounded-full bg-[#0951f6]" />
                 Selected
               </span>
               <span className="flex items-center gap-1">

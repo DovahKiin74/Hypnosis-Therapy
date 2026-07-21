@@ -502,13 +502,13 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           className="h-10 w-10 rounded-full object-cover"
         />
         <div>
-          <h3 className="text-sm font-bold text-[#17362f]">
+          <h3 className="text-sm font-bold text-[#001e61]">
             {testimonial.name}
           </h3>
           <p className="text-[11px] text-[#718078]">{testimonial.role}</p>
         </div>
       </div>
-      <QuoteIcon aria-hidden="true" size={15} className="mt-4 text-[#72a07e]" />
+      <QuoteIcon aria-hidden="true" size={15} className="mt-4 text-[#0951f6]" />
       <p className="mt-1 text-sm leading-relaxed text-[#52665d]">
         “{testimonial.quote}”
       </p>
@@ -544,12 +544,12 @@ export function Testimonials() {
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
           Client stories
         </p>
         <h2
           id="testimonials-heading"
-          className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#17362f] sm:text-5xl"
+          className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#001e61] sm:text-5xl"
         >
           The shift is tangible.
         </h2>

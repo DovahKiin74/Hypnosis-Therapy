@@ -18,7 +18,7 @@ export function OutlineRippleButton({
 }: OutlineRippleButtonProps) {
   const { ripples, createRipple, clearRipples } = useRipple();
 
-  const baseStyles = 'group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-[#4e7b64] px-6 py-3.5 text-sm font-bold text-[#4e7b64] transition-all duration-300 hover:bg-[#4e7b64] hover:text-white';
+  const baseStyles = 'group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-[#000] px-6 py-3.5 text-sm font-bold text-[#000000] transition-all duration-300 hover:bg-[#000] hover:text-white';
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     createRipple(e);
@@ -38,7 +38,7 @@ export function OutlineRippleButton({
       {ripples.slice(-1).map((ripple) => (
         <span
           key={ripple.id}
-          className="absolute pointer-events-none rounded-full bg-[#4e7b64] animate-ripple"
+          className="absolute pointer-events-none rounded-full bg-[#000] animate-ripple"
           style={{
             left: ripple.x - 10,
             top: ripple.y - 10,

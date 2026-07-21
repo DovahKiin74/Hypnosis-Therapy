@@ -34,7 +34,7 @@ const processes = [
 
 export function HowItWorksPage() {
   return (
-    <main className="w-full bg-[#f6f7f5] text-[#17362f] px-[16px] py-[16px]">
+    <main className="w-full bg-[#f6f7f5] text-[#0951f6] px-[16px] py-[16px]">
       <div className="mx-auto flex flex-col gap-5 sm:gap-7 max-w-[1600px]">
 
         {/* Hero Section - Image Left, Content Right */}
@@ -58,14 +58,14 @@ export function HowItWorksPage() {
                 <div className="flex-1 flex flex-col justify-between min-h-[320px]">
                   {/* Heading - Top */}
                   <div>
-                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#4e7b64]">
+                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#000000]">
                       How It Works
                     </p>
                     
-                    <h1 className="font-display text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-[#17362f] sm:text-4xl lg:text-5xl">
+                    <h1 className="font-display text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-[#0951f6] sm:text-4xl lg:text-5xl">
                       One System.
                       <br />
-                      <span className="text-[#4e7b64]">Three Phases.</span>
+                      <span className="text-[#000000]">Three Phases.</span>
                     </h1>
                   </div>
 
@@ -95,10 +95,10 @@ export function HowItWorksPage() {
         <section className="rounded-[24px] overflow-hidden px-5 py-16 sm:px-10 lg:px-[50px]">
           <div className="mx-auto max-w-6xl">
             <div className="text-center mb-12">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4e7b64]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#000000]">
                 One System. Three Phases.
               </p>
-              <h2 className="font-display mt-2 text-3xl font-semibold text-[#17362f] sm:text-4xl">
+              <h2 className="font-display mt-2 text-3xl font-semibold text-[#001e61] sm:text-4xl">
                 Diagnose. Rebuild. Execute.
               </h2>
               <p className="mt-3 max-w-2xl mx-auto text-base leading-relaxed text-[#4d6259]">
@@ -133,16 +133,16 @@ export function HowItWorksPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#eef3f0] text-[#4e7b64]">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#eef3f0] text-[#000000]">
                           <process.icon size={20} />
                         </div>
-                        <h3 className="font-display text-4xl font-semibold text-[#17362f]">
+                        <h3 className="font-display text-4xl font-semibold text-[#001e61]">
                           {process.title}
                         </h3>
                       </div>
                     </div>
                     
-                    <p className="text-base font-medium leading-relaxed text-[#17362f]">
+                    <p className="text-base font-medium leading-relaxed text-[#000]">
                       {process.description}
                     </p>
                     
