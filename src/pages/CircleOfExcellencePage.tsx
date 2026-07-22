@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import { Newsletter } from '../components/Newsletter';
 import { CircleOfExcellenceFaq } from '../components/CircleOfExcellenceFaq';
 import { BookSection } from '../components/BookSection';
+import { CircleOfExcellenceVideo } from '../components/CircleOfExcellenceVideo';
 
 export function CircleOfExcellencePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -519,6 +520,7 @@ export function CircleOfExcellencePage() {
         <CircleOfExcellenceHero 
           onOpenModal={() => setIsModalOpen(true)} 
         />
+        <CircleOfExcellenceVideo />
         <CircleOfExcellenceAbout />        
         <CircleOfExcellenceCTA 
           onOpenModal={() => setIsModalOpen(true)} 

@@ -18,7 +18,7 @@ export function CircleOfExcellenceAbout() {
           </p>
           
           <h2 className="font-display text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-[#001e61] sm:text-4xl">
-            Balance Is the Foundation of Excellence
+            Harmony Is the Foundation of Excellence
           </h2>
           
           <div className="mt-6 space-y-4 text-base text-[#52665d] leading-relaxed">

@@ -195,3 +195,11 @@ input {
 .field-design:focus{
   border: 1px solid #0951f6;
 }
+
+.status--badge{
+  background-color: #dfa000;
+  padding: 3px 12px;
+  border-radius: 39px;
+  color: black;
+  font-size: 12px;
+}
